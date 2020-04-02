@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="TOnTimer" Id="{677fc192-31a0-06a7-0135-9ed2e1b8f627}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TOnTimer
+VAR
+    TON1 : TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Delay" Id="{0d9559ec-6c29-008c-30e1-2b6c5be571d9}">
+      <Declaration><![CDATA[METHOD Delay : BOOL
+VAR_INPUT
+    In : BOOL;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TON1(IN := In);
+Delay := TON1.Q;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{523937ce-f181-060a-3975-d17e94bc8381}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+    PresetTime : LREAL; // seconds
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TON1.PT := LREAL_TO_TIME(PresetTime * 1000);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="OutputState" Id="{a28b64ed-1563-4b91-a7f3-215fbd1f41f8}">
+      <Declaration><![CDATA[PROPERTY OutputState : BOOL]]></Declaration>
+      <Get Name="Get" Id="{b7210633-a708-400f-ae47-b4297bcc670f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[OutputState := TON1.Q;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="PresetTime" Id="{c5774100-9185-0102-0bda-dd487567e0a1}">
+      <Declaration><![CDATA[PROPERTY PresetTime : LREAL]]></Declaration>
+      <Get Name="Get" Id="{03d9bde0-ef32-06e4-3d0b-1ec1280df1ca}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[PresetTime := TIME_TO_LREAL(TON1.PT)/1000.0; // in seconds]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{aec92e53-4db2-0128-3a07-41119aeed772}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[TON1.PT := LREAL_TO_TIME(PresetTime * 1000);
+]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="Reset" Id="{ca2fbbd6-ed37-0717-0d86-2b0978515b06}">
+      <Declaration><![CDATA[METHOD Reset 
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TON1(IN := FALSE);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Run" Id="{74695f11-d12a-0d18-1144-977d6a8d3fd7}">
+      <Declaration><![CDATA[METHOD Run : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TON1(IN := TRUE);
+Run := TON1.Q;
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
