@@ -18,9 +18,10 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_Utilities</Title>
-    <ProjectVersion>1.0.0.0</ProjectVersion>
+    <ProjectVersion>1.0.1.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>Draft Version</Description>
+    <Description>F_GetAdsPort added
+TStringSplitter added</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory xmlns="">
@@ -52,6 +53,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\TRisingEdge.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\TStringSplitter.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\TValueMonitor.TcPOU">
@@ -117,6 +121,9 @@
     <Compile Include="Functions\F_FormatStringEx8.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Functions\F_GetAdsPort.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Functions\F_LogError.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -126,7 +133,16 @@
     <Compile Include="Functions\F_LogWarning.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Functions\F_LTrimEx.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\F_RTrimEx.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Functions\F_STRING_TO_ARG.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\F_Trim.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">

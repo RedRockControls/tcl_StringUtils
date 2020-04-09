@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.0.26">
+  <POU Name="F_LTrimEx" Id="{b231ba14-158f-4b86-a454-3236e2e0f35d}">
+    <Declaration><![CDATA[FUNCTION F_LTrimEx : T_MaxString // removes n characters from start of string
+VAR_INPUT
+   n : UINT; 
+   str : T_MaxString;
+END_VAR
+VAR
+    Length : UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Length := INT_TO_UINT(LEN(str));
+IF n = 0 THEN
+    F_LTrimEx := str;
+ELSIF n < Length THEN
+    MEMCPY(destAddr := ADR(F_LTrimEx),
+           srcAddr  := ADR(str) + n,
+           n        := Length - n + 1); // include null terminator
+END_IF]]></ST>
+    </Implementation>
+    <ObjectProperties />
+  </POU>
+</TcPlcObject>

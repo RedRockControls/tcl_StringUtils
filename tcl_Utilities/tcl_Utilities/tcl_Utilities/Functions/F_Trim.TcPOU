@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+  <POU Name="F_Trim" Id="{2bb65ac4-61c3-4dcc-a491-264e7fa8b98d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_Trim : T_MaxString
+VAR_INPUT
+	str: T_MaxString;
+END_VAR
+VAR
+	Result: T_MaxString;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Result := str;
+WHILE 
+    LEFT(Result,1) = '$T'
+OR 
+    LEFT(Result,1) = ' '
+DO
+	Result := F_LTrimEx(n := 1, str := Result); // Strip tabs and spaces from LHS
+END_WHILE
+
+WHILE 
+    RIGHT(Result,1) = '$R'
+OR 
+    RIGHT(Result,1) = '$N'
+OR 
+    RIGHT(Result,1) = '$T'
+OR 
+    RIGHT(Result,1) = ' '
+DO
+	Result := F_RTrimEx(n := 1, str := Result); // Strip tabs, Spaces, CR and LF from RHS
+END_WHILE
+
+
+F_Trim := Result;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
