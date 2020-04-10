@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
   <POU Name="TStringSplitter" Id="{6fd1e055-a522-4d30-8739-35f2e9540abf}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK TStringSplitter
 VAR
@@ -75,6 +75,16 @@ END_IF]]></ST>
       <Implementation>
         <ST><![CDATA[GetRemainder := SubjectString; // return what is left
 SubjectString := '';
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="HasMore" Id="{bdd38514-09c0-0c68-3dcf-5ee9bc5d93b8}">
+      <Declaration><![CDATA[METHOD HasMore : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[HasMore := SubjectString <> '';
 ]]></ST>
       </Implementation>
     </Method>
