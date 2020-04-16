@@ -3,7 +3,8 @@
   <POU Name="PB_TestRunner" Id="{5a6e8b50-8dd8-4eba-9459-28fa6c7e6d6e}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PB_TestRunner
 VAR
-    Test_LicenceCheck : TTest_LicenceCheck;
+    Test_LicenceCheck        : TTest_LicenceCheck;
+    Test_ConversionFunctions : TTest_ConversionFunctions;
 END_VAR
 ]]></Declaration>
     <Implementation>

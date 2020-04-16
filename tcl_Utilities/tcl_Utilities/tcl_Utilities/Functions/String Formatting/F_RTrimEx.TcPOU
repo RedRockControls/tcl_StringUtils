@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4018.2">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
   <POU Name="F_RTrimEx" Id="{c2f1bd2b-d31d-43e4-836e-705c34495475}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION F_RTrimEx : T_MaxString // removes n characters from end of string
 VAR_INPUT

@@ -18,9 +18,9 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_Utilities</Title>
-    <ProjectVersion>1.0.2.0</ProjectVersion>
+    <ProjectVersion>1.0.3.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>HasMore() added to TStringSplitter</Description>
+    <Description>Date Time formatting functions added</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory xmlns="">
@@ -63,88 +63,109 @@
     <Compile Include="Classes\TValueMonitorEx.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_ClearMem.TcPOU">
+    <Compile Include="Functions\Date Time Formatting\F_DateAsString.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatString1.TcPOU">
+    <Compile Include="Functions\Date Time Formatting\F_DateTimeAsString.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatString10.TcPOU">
+    <Compile Include="Functions\Date Time Formatting\F_DateTimeAsString_ms.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatString2.TcPOU">
+    <Compile Include="Functions\Date Time Formatting\F_TimeAsString.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatString3.TcPOU">
+    <Compile Include="Functions\Date Time Formatting\F_TimeAsString_ms.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatString4.TcPOU">
+    <Compile Include="Functions\Date Time Formatting\F_TimestampAsFilenameString.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatString5.TcPOU">
+    <Compile Include="Functions\General\F_ClearMem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatString6.TcPOU">
+    <Compile Include="Functions\General\F_GetAdsPort.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatString7.TcPOU">
+    <Compile Include="Functions\Logging\F_LogError.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatString8.TcPOU">
+    <Compile Include="Functions\Logging\F_LogMessage.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatStringEx1.TcPOU">
+    <Compile Include="Functions\Logging\F_LogWarning.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatStringEx10.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatString1.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatStringEx2.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatString10.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatStringEx3.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatString2.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatStringEx4.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatString3.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatStringEx5.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatString4.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatStringEx6.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatString5.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatStringEx7.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatString6.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_FormatStringEx8.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatString7.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_GetAdsPort.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatString8.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_LogError.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatStringEx1.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_LogMessage.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatStringEx10.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_LogWarning.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatStringEx2.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_LTrimEx.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatStringEx3.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_RTrimEx.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatStringEx4.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_STRING_TO_ARG.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatStringEx5.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Functions\F_Trim.TcPOU">
+    <Compile Include="Functions\String Formatting\F_FormatStringEx6.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\String Formatting\F_FormatStringEx7.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\String Formatting\F_FormatStringEx8.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\String Formatting\F_LTrimEx.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\String Formatting\F_RTrimEx.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\String Formatting\F_STRING_TO_ARG.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\String Formatting\F_Trim.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\Date Time Formatting Tests\TTest_ConversionFunctions.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Unit Tests\PB_TestRunner.TcPOU">
@@ -160,7 +181,12 @@
   <ItemGroup>
     <Folder Include="Classes" />
     <Folder Include="Functions" />
+    <Folder Include="Functions\Date Time Formatting" />
+    <Folder Include="Functions\Logging" />
+    <Folder Include="Functions\General" />
+    <Folder Include="Functions\String Formatting" />
     <Folder Include="Unit Tests" />
+    <Folder Include="Unit Tests\Date Time Formatting Tests" />
     <Folder Include="Version" />
   </ItemGroup>
   <ItemGroup>

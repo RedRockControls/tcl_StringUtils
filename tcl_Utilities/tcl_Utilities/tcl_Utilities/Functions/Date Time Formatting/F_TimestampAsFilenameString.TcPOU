@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="F_TimestampAsFilenameString" Id="{417abe79-4e47-0109-14bd-98d088a331c2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_TimestampAsFilenameString : T_MaxString
+VAR_INPUT
+    TimeStruct : TIMESTRUCT;
+END_VAR
+VAR
+	FB_FormatString1 : FB_FormatString;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FB_FormatString1(
+	sFormat:= '%.2d-%.2d-%.2d %.2d-%.2d-%.2d', 
+	arg1:= F_WORD(TimeStruct.wYear), 
+	arg2:= F_WORD(TimeStruct.wMonth), 
+	arg3:= F_WORD(TimeStruct.wDay),
+	arg4:= F_WORD(TimeStruct.wHour),
+	arg5:= F_WORD(TimeStruct.wMinute), 
+	arg6:= F_WORD(TimeStruct.wSecond), 
+	arg7:= ,
+	arg8:= , 
+	arg9:= , 
+	arg10:= , 
+	bError=> , 
+	nErrId=> , 
+	sOut=> F_TimestampAsFilenameString);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

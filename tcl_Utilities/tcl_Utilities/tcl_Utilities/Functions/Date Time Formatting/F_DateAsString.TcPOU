@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="F_DateAsString" Id="{0996bec8-7380-0902-031b-ca55da1cb0af}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_DateAsString : T_MaxString
+VAR_INPUT
+    TimeStruct : TIMESTRUCT;
+END_VAR
+VAR
+	FB_FormatString1 : FB_FormatString;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[F_DateAsString := F_FormatString3(
+                      Format := '%.2d/%.2d/%.2d',
+                      arg1   := F_WORD(TimeStruct.wDay),
+                      arg2   := F_WORD(TimeStruct.wMonth),
+                      arg3   := F_WORD(TimeStruct.wYear));
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

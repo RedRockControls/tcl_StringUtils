@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="F_DateTimeAsString_ms" Id="{792ea374-7462-0806-26f6-cb6adaaa325e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_DateTimeAsString_ms : T_MaxString
+VAR_INPUT
+    TimeStruct : TIMESTRUCT;
+END_VAR
+VAR
+	FB_FormatString1 : FB_FormatString;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[F_DateTimeAsString_ms := F_FormatStringEx2(
+                             Format := '%s %s',
+                             arg1   := F_TimeAsString_ms(TimeStruct),
+                             arg2   := F_DateAsString(TimeStruct));
+    
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

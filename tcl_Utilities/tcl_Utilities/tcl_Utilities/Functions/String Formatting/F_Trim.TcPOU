@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.2">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
   <POU Name="F_Trim" Id="{2bb65ac4-61c3-4dcc-a491-264e7fa8b98d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION F_Trim : T_MaxString
 VAR_INPUT
