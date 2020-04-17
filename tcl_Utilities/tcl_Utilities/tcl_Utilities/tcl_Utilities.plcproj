@@ -18,9 +18,9 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_Utilities</Title>
-    <ProjectVersion>1.0.4.0</ProjectVersion>
+    <ProjectVersion>1.0.5.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>TClock added</Description>
+    <Description>Logging moved to tcl_EventLog</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory xmlns="">
@@ -118,15 +118,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\General\F_GetAdsPort.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\Logging\F_LogError.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\Logging\F_LogMessage.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\Logging\F_LogWarning.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\String Formatting\F_FormatString1.TcPOU">
@@ -232,7 +223,6 @@
     <Folder Include="Classes\Timers" />
     <Folder Include="Functions" />
     <Folder Include="Functions\Date Time Formatting" />
-    <Folder Include="Functions\Logging" />
     <Folder Include="Functions\General" />
     <Folder Include="Functions\String Formatting" />
     <Folder Include="Unit Tests" />
@@ -258,6 +248,10 @@
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="tcl_EventLog">
+      <DefaultResolution>tcl_EventLog, * (Red Rock Controls Limited)</DefaultResolution>
+      <Namespace>tcl_EventLog</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="tcl_Events">
       <DefaultResolution>tcl_Events, * (Red Rock Controls Limited)</DefaultResolution>
