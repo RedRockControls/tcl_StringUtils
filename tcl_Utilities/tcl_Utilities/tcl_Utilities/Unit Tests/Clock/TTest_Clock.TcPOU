@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="TTest_Clock" Id="{6753c0df-cce1-0e4c-37aa-0c116296df33}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TTest_Clock EXTENDS FB_TestSuite 
+IMPLEMENTS 
+    IEventHandler_OnSecondsChanged,
+    IEventHandler_OnMinutesChanged,
+    IEventHandler_OnHourChanged,
+    IEventHandler_OnDayChanged
+VAR
+    NowFromEvent : TIMESTRUCT;
+    
+    OnSecondsChanged_Raised : BOOL;
+    OnMinutesChanged_Raised : BOOL;
+    OnHoursChanged_Raised   : BOOL;
+    OnDaysChanged_Raised    : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Test_Raises_OnSecondsChanged();
+Test_Raises_OnMinutesChanged();
+Test_Raises_OnHoursChanged();
+Test_Raises_OnDaysChanged();]]></ST>
+    </Implementation>
+    <Method Name="OnDayChanged" Id="{59e07b53-55c2-0d89-305d-b54c819e7dd8}">
+      <Declaration><![CDATA[METHOD OnDayChanged
+VAR_INPUT
+	Now	: Tc2_Utilities.TIMESTRUCT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[NowFromEvent := Now;
+OnDaysChanged_Raised := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnHourChanged" Id="{d345a5e9-9a46-0b24-28dd-c769c537d1a1}">
+      <Declaration><![CDATA[METHOD OnHourChanged
+VAR_INPUT
+	Now	: Tc2_Utilities.TIMESTRUCT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[NowFromEvent := Now;
+OnHoursChanged_Raised := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnMinutesChanged" Id="{f18c313e-3c98-0331-336b-123a3e056048}">
+      <Declaration><![CDATA[METHOD OnMinutesChanged
+VAR_INPUT
+	Now	: Tc2_Utilities.TIMESTRUCT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[NowFromEvent := Now;
+OnMinutesChanged_Raised := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnSecondsChanged" Id="{142ea19e-a122-044f-0a41-7da176c99e60}">
+      <Declaration><![CDATA[METHOD OnSecondsChanged
+VAR_INPUT
+	Now	: Tc2_Utilities.TIMESTRUCT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[NowFromEvent := Now;
+OnSecondsChanged_Raised := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Test_Raises_OnDaysChanged" Id="{dca59e92-ff9a-05fe-05d7-e52b93717811}">
+      <Declaration><![CDATA[METHOD Test_Raises_OnDaysChanged
+VAR_INST
+    ClockEventSource : TClockEventSource;
+    Now              : TIMESTRUCT := (wDay := 23, wMonth := 12, wYear := 1945, wHour := 22, wMinute := 20, wSecond := 18);
+    OneDayLater      : TIMESTRUCT := (wDay := 24, wMonth := 12, wYear := 1945, wHour := 22, wMinute := 20, wSecond := 18);
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST(TestName := 'Test_Raises_OnDaysChanged');
+
+OnDaysChanged_Raised := FALSE;
+
+ClockEventSource.Event_DayChanged.ClearEventHandlers().AddEventHandler(THIS^);
+
+ClockEventSource.Init(Now := Now);
+ClockEventSource(Now := OneDayLater);
+
+AssertEquals_BOOL(
+    Expected := TRUE,
+    Actual   := OnDaysChanged_Raised,
+    Message  := 'OnDaysChanged_Raised value not correct');
+
+AssertEquals(
+    Expected := OneDayLater,
+    Actual   := NowFromEvent,
+    Message  := 'NowFromEvent value not correct');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Test_Raises_OnHoursChanged" Id="{ac4c3a9d-6f84-00e1-25b9-30fbf8869ed8}">
+      <Declaration><![CDATA[METHOD Test_Raises_OnHoursChanged
+VAR_INST
+    ClockEventSource : TClockEventSource;
+    Now              : TIMESTRUCT := (wDay := 23, wMonth := 12, wYear := 1945, wHour := 22, wMinute := 20, wSecond := 18);
+    OneHourLater     : TIMESTRUCT := (wDay := 23, wMonth := 12, wYear := 1945, wHour := 23, wMinute := 20, wSecond := 18);
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST(TestName := 'Test_Raises_OnHoursChanged');
+
+OnHoursChanged_Raised := FALSE;
+
+ClockEventSource.Event_HoursChanged.ClearEventHandlers().AddEventHandler(THIS^);
+
+ClockEventSource.Init(Now := Now);
+ClockEventSource(Now := OneHourLater);
+
+AssertEquals_BOOL(
+    Expected := TRUE,
+    Actual   := OnHoursChanged_Raised,
+    Message  := 'OnHoursChanged_Raised value not correct');
+
+AssertEquals(
+    Expected := OneHourLater,
+    Actual   := NowFromEvent,
+    Message  := 'NowFromEvent value not correct');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Test_Raises_OnMinutesChanged" Id="{f50a250c-106e-0cd6-1188-0aa62b9db30c}">
+      <Declaration><![CDATA[METHOD Test_Raises_OnMinutesChanged
+VAR_INST
+    ClockEventSource : TClockEventSource;
+    Now              : TIMESTRUCT := (wDay := 23, wMonth := 12, wYear := 1945, wHour := 22, wMinute := 20, wSecond := 18);
+    OneMinuteLater   : TIMESTRUCT := (wDay := 23, wMonth := 12, wYear := 1945, wHour := 22, wMinute := 21, wSecond := 18);
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST(TestName := 'Test_Raises_OnMinutesChanged');
+
+OnMinutesChanged_Raised := FALSE;
+
+ClockEventSource.Event_MinutesChanged.ClearEventHandlers().AddEventHandler(THIS^);
+
+ClockEventSource.Init(Now := Now);
+ClockEventSource(Now := OneMinuteLater);
+
+AssertEquals_BOOL(
+    Expected := TRUE,
+    Actual   := OnMinutesChanged_Raised,
+    Message  := 'OnMinutesChanged_Raised value not correct');
+
+AssertEquals(
+    Expected := OneMinuteLater,
+    Actual   := NowFromEvent,
+    Message  := 'NowFromEvent value not correct');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Test_Raises_OnSecondsChanged" Id="{d3d9a8e7-ba30-0f9f-380b-387b3da8d836}">
+      <Declaration><![CDATA[METHOD Test_Raises_OnSecondsChanged
+VAR_INST
+    ClockEventSource : TClockEventSource;
+    Now              : TIMESTRUCT := (wDay := 23, wMonth := 12, wYear := 1945, wHour := 22, wMinute := 20, wSecond := 18);
+    OneSecondLater   : TIMESTRUCT := (wDay := 23, wMonth := 12, wYear := 1945, wHour := 22, wMinute := 20, wSecond := 19);
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TEST(TestName := 'Test_Raises_OnSecondsChanged');
+
+OnSecondsChanged_Raised := FALSE;
+
+ClockEventSource.Event_SecondsChanged.ClearEventHandlers().AddEventHandler(THIS^);
+
+ClockEventSource.Init(Now := Now);
+ClockEventSource(Now := OneSecondLater);
+
+AssertEquals_BOOL(
+    Expected := TRUE,
+    Actual   := OnSecondsChanged_Raised,
+    Message  := 'OnSecondsChanged_Raised value not correct');
+
+AssertEquals(
+    Expected := OneSecondLater,
+    Actual   := NowFromEvent,
+    Message  := 'NowFromEvent value not correct');
+
+TEST_FINISHED();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

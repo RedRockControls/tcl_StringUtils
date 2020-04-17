@@ -1,3 +1,4 @@
 ﻿**/_Boot
 **/_Libraries
 tcl_Utilities.library
+*.tclrs

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="TClock" Id="{60fbc1e8-84a6-0a94-1867-c658ee7c5917}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TClock IMPLEMENTS IClock
+VAR
+    _DateTimeInitialised : BOOL; // to detect startup
+	_NowAsTimeStruct: TIMESTRUCT;
+    
+	NT_GetTime1: NT_GetTime;
+	TON1: TON;
+    GetWindowsTimeRequest : BOOL;
+	SyncRequest: BOOL;
+    F_TRIG1 : F_TRIG;
+	RTC_EX2: RTC_EX2;
+	PresetTime: TIMESTRUCT;
+    
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Request a sync every 10s
+TON1(IN := NOT GetWindowsTimeRequest, PT := T#10S, Q=> GetWindowsTimeRequest);
+
+// Get time from Windows clock
+NT_GetTime1(
+	NetId := '',
+	Start := GetWindowsTimeRequest OR NOT _DateTimeInitialised, // request on first scan also
+	TmOut := T#2S,
+    Busy => ,
+    Err => ,
+    ErrId => ,
+	TimeStr => PresetTime);
+
+// Request sync to Windows time when time received
+F_TRIG1(CLK :=  NT_GetTime1.Busy, Q=> SyncRequest);   
+    
+// Sync RTC to Windows time
+RTC_EX2(
+	EN:= SyncRequest, // re-initialise to Windows clock following sync request
+	PDT:= PresetTime, // time to sync to
+	PMICRO:= PresetTime.wMilliseconds, 
+	Q=> , 
+	CDT=> _NowAsTimeStruct, // time updated on every call
+	CMICRO=> );
+    
+IF SyncRequest THEN    
+    _DateTimeInitialised := TRUE;
+END_IF
+
+
+]]></ST>
+    </Implementation>
+    <Property Name="DateTimeInitialised" Id="{e8f6a0ac-8cab-0576-20d1-a9d1105d53b1}">
+      <Declaration><![CDATA[PROPERTY DateTimeInitialised : BOOL]]></Declaration>
+      <Get Name="Get" Id="{42cab26b-3b1d-0bb4-1474-ed41ca44b6a2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[DateTimeInitialised := _DateTimeInitialised;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="NowAsDateTime" Id="{0ac35ca2-8b7a-0a8f-0365-48a1329f4316}">
+      <Declaration><![CDATA[PROPERTY NowAsDateTime : DT]]></Declaration>
+      <Get Name="Get" Id="{9d4c4446-62c2-0032-2ced-58ccd05c32d6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[NowAsDateTime := SYSTEMTIME_TO_DT(TIMESTR:= _NowAsTimeStruct);]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="NowAsTimeStruct" Id="{3bfe5d05-6073-0f86-297a-ba3520cf1017}">
+      <Declaration><![CDATA[PROPERTY NowAsTimeStruct : REFERENCE TO TIMESTRUCT]]></Declaration>
+      <Get Name="Get" Id="{381ca9bf-dda6-0e58-115d-884e42c4e40d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[NowAsTimeStruct REF= _NowAsTimeStruct;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <ObjectProperties>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="LicenseProperty">
+            <l2 n="Licenses" />
+          </o>
+        </Data>
+        <TypeList>
+          <Type n="LicenseProperty">{ec6b18ef-cd41-4646-b1b3-985c60f930b9}</Type>
+        </TypeList>
+      </XmlArchive>
+    </ObjectProperties>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="TEvent_DayChanged" Id="{b9788094-e17d-0058-0b1f-d0e90b67c34f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TEvent_DayChanged EXTENDS TEventBase IMPLEMENTS IEvent
+VAR
+	Now: TIMESTRUCT;
+    Handler : IEventHandler_OnDayChanged;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="CallHandler" Id="{0b6c4cb4-cb40-0423-2a05-fdf1eab7426f}">
+      <Declaration><![CDATA[METHOD  CallHandler
+VAR_INPUT
+    HandlerBase : IEventHandlerBase;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF __QUERYINTERFACE(HandlerBase,Handler) THEN
+    Handler.OnDayChanged(Now);
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="IsHandlerSupported" Id="{ac0dad3b-4e7d-0604-2f1c-135f9ecb5506}">
+      <Declaration><![CDATA[METHOD  IsHandlerSupported : BOOL
+VAR_INPUT
+    EventHandler : IEventHandlerBase;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF __QUERYINTERFACE(EventHandler,Handler) THEN
+    IsHandlerSupported := TRUE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RaiseEx" Id="{aedee585-cfd0-0333-1f86-c0ca8e9aa6ba}">
+      <Declaration><![CDATA[METHOD RaiseEx
+VAR_INPUT
+	Now: TIMESTRUCT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.Now := Now;
+SUPER^.Raise();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

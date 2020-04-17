@@ -18,9 +18,9 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_Utilities</Title>
-    <ProjectVersion>1.0.3.0</ProjectVersion>
+    <ProjectVersion>1.0.4.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>Date Time formatting functions added</Description>
+    <Description>TClock added</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory xmlns="">
@@ -36,31 +36,64 @@
     </Licenses>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Classes\TFallingEdge.TcPOU">
+    <Compile Include="Classes\Clock\Event Definitions\Day Changed\IEventHandler_OnDayChanged.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\TLicenceCheck.TcPOU">
+    <Compile Include="Classes\Clock\Event Definitions\Day Changed\TEvent_DayChanged.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\TOffTimer.TcPOU">
+    <Compile Include="Classes\Clock\Event Definitions\Hours Changed\IEventHandler_OnHourChanged.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\TOnTimer.TcPOU">
+    <Compile Include="Classes\Clock\Event Definitions\Hours Changed\TEvent_HoursChanged.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\TPulseTimer.TcPOU">
+    <Compile Include="Classes\Clock\Event Definitions\Minutes Changed\IEventHandler_OnMinutesChanged.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\TRisingEdge.TcPOU">
+    <Compile Include="Classes\Clock\Event Definitions\Minutes Changed\TEvent_MinutesChanged.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\TStringSplitter.TcPOU">
+    <Compile Include="Classes\Clock\Event Definitions\Seconds Changed\IEventHandler_OnSecondsChanged.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\TValueMonitor.TcPOU">
+    <Compile Include="Classes\Clock\Event Definitions\Seconds Changed\TEvent_SecondsChanged.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\TValueMonitorEx.TcPOU">
+    <Compile Include="Classes\Clock\IClock.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Clock\TClock.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Clock\TClockEventSource.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Edge Detection\TFallingEdge.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Edge Detection\TRisingEdge.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Licence Check\TLicenceCheck.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\String Split\TStringSplitter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Timers\TOffTimer.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Timers\TOnTimer.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Timers\TPulseTimer.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Value Monitor\TValueMonitor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Value Monitor\TValueMonitorEx.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\Date Time Formatting\F_DateAsString.TcPOU">
@@ -165,13 +198,19 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Unit Tests\Clock\TTest_Clock.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Unit Tests\Date Time Formatting Tests\TTest_ConversionFunctions.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\Licence Check\TTest_LicenceCheck.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Unit Tests\PB_TestRunner.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Unit Tests\TTest_LicenceCheck.TcPOU">
+    <Compile Include="Unit Tests\String Split\TTest_StringSplitter.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Version\Global_Version.TcGVL">
@@ -180,6 +219,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes" />
+    <Folder Include="Classes\Clock\Event Definitions" />
+    <Folder Include="Classes\Clock\Event Definitions\Day Changed" />
+    <Folder Include="Classes\Clock\Event Definitions\Hours Changed" />
+    <Folder Include="Classes\Clock\Event Definitions\Minutes Changed" />
+    <Folder Include="Classes\Clock\Event Definitions\Seconds Changed" />
+    <Folder Include="Classes\Edge Detection" />
+    <Folder Include="Classes\Licence Check" />
+    <Folder Include="Classes\Clock" />
+    <Folder Include="Classes\String Split" />
+    <Folder Include="Classes\Value Monitor" />
+    <Folder Include="Classes\Timers" />
     <Folder Include="Functions" />
     <Folder Include="Functions\Date Time Formatting" />
     <Folder Include="Functions\Logging" />
@@ -187,6 +237,9 @@
     <Folder Include="Functions\String Formatting" />
     <Folder Include="Unit Tests" />
     <Folder Include="Unit Tests\Date Time Formatting Tests" />
+    <Folder Include="Unit Tests\Licence Check" />
+    <Folder Include="Unit Tests\Clock" />
+    <Folder Include="Unit Tests\String Split" />
     <Folder Include="Version" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +258,10 @@
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="tcl_Events">
+      <DefaultResolution>tcl_Events, * (Red Rock Controls Limited)</DefaultResolution>
+      <Namespace>tcl_Events</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="TcUnit">
       <DefaultResolution>TcUnit, * (www.tcunit.org)</DefaultResolution>

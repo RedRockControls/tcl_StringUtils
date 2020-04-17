@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
-  <POU Name="TValueMonitor" Id="{591647b8-2c47-489b-b7d0-55ab105e2f90}" SpecialFunc="None">
+  <POU Name="TValueMonitor" Id="{3e30235b-556e-0cbb-38fe-867062101222}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'no_explicit_call':= 'do not call this POU directly'}
 FUNCTION_BLOCK TValueMonitor
 VAR
@@ -12,9 +12,9 @@ END_VAR
     <Implementation>
       <ST><![CDATA[]]></ST>
     </Implementation>
-    <Property Name="Changed" Id="{be26849e-4211-41c6-a367-42df2289bdc3}">
+    <Property Name="Changed" Id="{6e0eabef-a51f-0aa9-227c-35902feaa60a}">
       <Declaration><![CDATA[PROPERTY Changed : BOOL]]></Declaration>
-      <Get Name="Get" Id="{0d633c53-6323-42ab-9a3d-584e47765771}">
+      <Get Name="Get" Id="{bee77674-8a70-054e-0110-6b95c1045f45}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -23,9 +23,9 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="CurrentValue" Id="{d22ce7ec-c527-4370-9f47-f67132120b9e}">
+    <Property Name="CurrentValue" Id="{1060c0f1-95b1-010b-3cf3-d67b1d10a3f2}">
       <Declaration><![CDATA[PROPERTY CurrentValue : INT]]></Declaration>
-      <Get Name="Get" Id="{d958010f-da6b-4a0d-a224-3e86cf8c8211}">
+      <Get Name="Get" Id="{4f95a500-9447-09af-1099-7b8b5a55f72a}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -34,9 +34,9 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Property Name="PreviousValue" Id="{0f23966b-9af5-471f-8d31-07f21f96ea69}">
+    <Property Name="PreviousValue" Id="{a339600b-a845-0a1d-2f9b-029c78ee027f}">
       <Declaration><![CDATA[PROPERTY PreviousValue : INT]]></Declaration>
-      <Get Name="Get" Id="{deb54991-94a8-4f18-af98-2b83cb9aa254}">
+      <Get Name="Get" Id="{d3d603e7-26f5-07a2-2d51-d96700ba8064}">
         <Declaration><![CDATA[VAR
 END_VAR
 ]]></Declaration>
@@ -45,7 +45,7 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <Method Name="Reset" Id="{dea024b2-1dee-467c-9832-1f68ebeca288}">
+    <Method Name="Reset" Id="{f34d3a68-4510-0aca-1fbc-e57e2410f56f}">
       <Declaration><![CDATA[METHOD Reset
 VAR_INPUT
 END_VAR
@@ -56,7 +56,7 @@ _PreviousValue := 0;
 ]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Test" Id="{ecf9a3fe-9c14-44fa-ac8d-400c120ab469}">
+    <Method Name="Test" Id="{6529cf7b-ec45-0f00-18ca-636102b11808}">
       <Declaration><![CDATA[METHOD Test : BOOL
 VAR_INPUT
     Value : INT;

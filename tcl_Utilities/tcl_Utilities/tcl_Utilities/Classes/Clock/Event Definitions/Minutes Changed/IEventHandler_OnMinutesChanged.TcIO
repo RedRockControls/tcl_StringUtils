@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <Itf Name="IEventHandler_OnMinutesChanged" Id="{3673e252-4e05-0b95-34ca-b1a4cfa0cb35}">
+    <Declaration><![CDATA[INTERFACE IEventHandler_OnMinutesChanged EXTENDS IEventHandlerBase
+]]></Declaration>
+    <Method Name="OnMinutesChanged" Id="{65c67529-cc6c-06cf-0141-05a27cf82737}">
+      <Declaration><![CDATA[METHOD OnMinutesChanged
+VAR_INPUT
+	Now: TIMESTRUCT;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

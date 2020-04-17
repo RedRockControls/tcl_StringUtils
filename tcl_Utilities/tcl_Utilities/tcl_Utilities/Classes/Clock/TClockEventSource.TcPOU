@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="TClockEventSource" Id="{d41a7c3b-d251-0e4d-1d21-d772a8d2feb1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TClockEventSource
+VAR_INPUT
+    Now : TIMESTRUCT;
+END_VAR
+VAR
+    _LastTickNowAsTimestruct : TIMESTRUCT;
+
+    _Event_SecondsChanged : TEvent_SecondsChanged;
+    _Event_MinutesChanged : TEvent_MinutesChanged;
+    _Event_HoursChanged   : TEvent_HoursChanged;
+    _Event_DayChanged     : TEvent_DayChanged;
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF Now.wSecond <> _LastTickNowAsTimestruct.wSecond THEN
+    _Event_SecondsChanged.RaiseEx(Now);
+END_IF
+IF Now.wMinute <> _LastTickNowAsTimestruct.wMinute THEN
+    _Event_MinutesChanged.RaiseEx(Now);
+END_IF
+IF Now.wHour <> _LastTickNowAsTimestruct.wHour THEN
+    _Event_HoursChanged.RaiseEx(Now);
+END_IF
+IF Now.wDay <> _LastTickNowAsTimestruct.wDay THEN
+    _Event_DayChanged.RaiseEx(Now);
+END_IF
+
+_LastTickNowAsTimestruct := Now;
+]]></ST>
+    </Implementation>
+    <Property Name="Event_DayChanged" Id="{c9b7a872-d643-0746-2d98-2ed7f22168bf}">
+      <Declaration><![CDATA[PROPERTY Event_DayChanged : IEvent]]></Declaration>
+      <Get Name="Get" Id="{c8c1b222-733f-0950-1606-0bec6782da16}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Event_DayChanged := _Event_DayChanged;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Event_HoursChanged" Id="{1ad4670f-fefc-0d3d-193a-4ad7174d455e}">
+      <Declaration><![CDATA[PROPERTY Event_HoursChanged : IEvent]]></Declaration>
+      <Get Name="Get" Id="{68cbaef0-de64-0834-3fe0-f443eaf3cd32}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Event_HoursChanged := _Event_HoursChanged;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Event_MinutesChanged" Id="{69561157-bcfc-0e01-07f8-bcf0e04d40bb}">
+      <Declaration><![CDATA[PROPERTY Event_MinutesChanged : IEvent]]></Declaration>
+      <Get Name="Get" Id="{3229ec21-cc9a-00e6-17ba-e40280c586e6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Event_MinutesChanged := _Event_MinutesChanged;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Event_SecondsChanged" Id="{1137a3ba-9ab1-0a7f-0517-bd0366b6f63a}">
+      <Declaration><![CDATA[PROPERTY Event_SecondsChanged : IEvent]]></Declaration>
+      <Get Name="Get" Id="{3b84995c-a081-0ace-0912-238c096ac27f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Event_SecondsChanged := _Event_SecondsChanged;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Init" Id="{5d03e61f-82f1-011e-2596-1764a04abffc}">
+      <Declaration><![CDATA[METHOD Init // initialise stored value so event handlers do not fire erroneously on first update
+VAR_INPUT
+    Now : TIMESTRUCT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_LastTickNowAsTimestruct := Now;
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
