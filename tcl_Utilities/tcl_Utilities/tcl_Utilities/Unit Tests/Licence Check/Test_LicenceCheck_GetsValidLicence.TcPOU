@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Test_LicenceCheck_GetsValidLicence" Id="{221c330f-9ffe-0411-33a0-d470f26ab225}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_LicenceCheck_GetsValidLicence EXTENDS TUnitTestBase
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{d7fe8b28-4942-0727-3124-32c6f87c2304}">
+      <Declaration><![CDATA[METHOD  Execute
+VAR_INST
+    LicenceCheck : TLicenceCheck(
+        LicenceIdAsString      := '{4c256767-e6e6-4af5-bd68-9f7abad0c200}', // Tc_Ads Id
+        LicenceName            := 'Tc_Ads',
+        StopTwinCAT_IfNotValid := FALSE);
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT TestStarted THEN
+    LicenceCheck.FB_init(
+        bInitRetains            := FALSE,
+        bInCopyCode             := FALSE,
+        LicenceIdAsString      := '{4c256767-e6e6-4af5-bd68-9f7abad0c200}', // 1st digit should be 0
+        LicenceName            := 'Tc_Ads',
+        StopTwinCAT_IfNotValid := FALSE);
+    Test_Started();
+END_IF
+LicenceCheck();
+
+IF LicenceCheck.CheckComplete THEN
+    AssertEquals_BOOL(
+        Expected := TRUE,
+        Actual   := LicenceCheck.IsValid,
+        VariableName  := 'LicenceCheck.IsValid');
+    Test_Finished();
+END_IF
+ ]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

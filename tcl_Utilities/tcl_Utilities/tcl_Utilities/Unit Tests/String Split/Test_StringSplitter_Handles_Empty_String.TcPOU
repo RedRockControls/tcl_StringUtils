@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Test_StringSplitter_Handles_Empty_String" Id="{3a7cf2cc-79a9-0132-02fd-8eb652eaae4e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_StringSplitter_Handles_Empty_String EXTENDS TUnitTestBase
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{a479ed32-d15a-0b5d-0a09-99fd0530190f}">
+      <Declaration><![CDATA[METHOD  Execute
+VAR_INST
+    StringSplitter : TStringSplitter;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Test_Started();
+
+StringSplitter.Init(
+    Str    := '',
+    Delim1 := '$T',
+    Delim2 := '');
+
+AssertEquals_STRING(
+    Expected := '',
+    Actual   := StringSplitter.GetNext(),
+    VariableName  := 'StringSplitter.GetNext()');
+
+AssertEquals_BOOL(
+    Expected := FALSE,
+    Actual   := StringSplitter.HasMore(),
+    VariableName  := 'StringSplitter.HasMore()');
+
+
+Test_Finished();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

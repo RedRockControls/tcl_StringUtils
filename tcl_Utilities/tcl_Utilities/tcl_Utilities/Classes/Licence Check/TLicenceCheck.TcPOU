@@ -42,10 +42,7 @@ FB_GetLicenses1(
 IF FallingEdge_Busy.Test(FB_GetLicenses1.bBusy) THEN
     _CheckComplete := TRUE;
     IF FB_GetLicenses1.bError THEN
-            ADSLOGSTR(
-                msgCtrlMask := ADSLOG_MSGTYPE_STRING OR ADSLOG_MSGTYPE_ERROR OR ADSLOG_MSGTYPE_LOG,
-                msgFmtStr := 'Error retrieving TwinCAT licences',
-                strArg := DWORD_TO_HEXSTR(FB_GetLicenses1.nErrorId,4,FALSE));
+            F_LogError('Licence Check',F_FormatString1('Error %X retrieving TwinCAT licences',F_UDINT(FB_GetLicenses1.nErrorId)));
     ELSE
         IF FB_GetLicenses1.nValidLicenses > 0 THEN
             LicenceId := REGSTRING_TO_GUID(LicenceIdAsString);
@@ -58,12 +55,12 @@ IF FallingEdge_Busy.Test(FB_GetLicenses1.bBusy) THEN
     END_IF
     IF NOT _IsValid THEN
         IF StopTwinCAT_IfNotValid THEN
-            F_LogError(F_FormatStringEx2('TwinCAT Licence "%s" with ID %s not found: TwinCAT will be stopped!',LicenceName,LicenceIdAsString));
+            F_LogError('Licence Check',F_FormatStringEx2('Licence "%s" with ID %s not found: TwinCAT will be stopped!',LicenceName,LicenceIdAsString));
             ScanCount := 0;
             OnTimer_CheckComplete.Run();
             _StopTwinCAT := TRUE;
         ELSE
-            F_LogError(F_FormatStringEx2('TwinCAT Licence "%s" with ID %s not found.',LicenceName,LicenceIdAsString));
+            F_LogError('Licence Check',F_FormatStringEx2('Licence "%s" with ID %s not found.',LicenceName,LicenceIdAsString));
 		END_IF
     END_IF
 END_IF
@@ -107,6 +104,8 @@ END_VAR
         <ST><![CDATA[THIS^.LicenceIdAsString         := LicenceIdAsString;
 THIS^.LicenceName               := LicenceName;
 THIS^.StopTwinCAT_IfNotValid    := StopTwinCAT_IfNotValid;
+THIS^._IsValid                  := FALSE;
+THIS^._CheckComplete            := FALSE;
 ]]></ST>
       </Implementation>
     </Method>

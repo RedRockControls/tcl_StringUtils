@@ -1,18 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
-  <POU Name="PB_TestRunner" Id="{5a6e8b50-8dd8-4eba-9459-28fa6c7e6d6e}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM PB_TestRunner
+  <POU Name="PB_TestRunner" Id="{ec8045c6-529b-0ac2-038b-ab4cedabd62c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PB_TestRunner 
 VAR
-    Clock : TClock;
-    Test_LicenceCheck        : TTest_LicenceCheck;
-    Test_ConversionFunctions : TTest_ConversionFunctions;
-    Test_StringSplitter      : TTest_StringSplitter;
-    Test_Clock               : TTest_Clock;
+    EnableAdsLogMessages_State : BOOL;
+    EnableAdsLogMessages_DuringTest : BOOL := FALSE; // inhibit Invalid Event Handler error message - confusing here
+    RisingEdge_TestsRunning  : TRisingEdge;
+    FallingEdge_TestsRunning : TFallingEdge;
+    
+    Test_Raises_OnDaysChanged                : Test_Raises_OnDaysChanged;
+    Test_Raises_OnHoursChanged               : Test_Raises_OnHoursChanged;
+    Test_Raises_OnMinutesChanged             : Test_Raises_OnMinutesChanged;
+    Test_Raises_OnSecondsChanged             : Test_Raises_OnSecondsChanged;
+                                             
+    Test_DateAsString                        : Test_DateAsString;
+    Test_DateTimeAsString                    : Test_DateTimeAsString;
+    Test_DateTimeAsString_ms                 : Test_DateTimeAsString_ms;
+    Test_TimeAsString_24HourFormat           : Test_TimeAsString_24HourFormat;
+    Test_TimeAsString_IncludesLeadingZeros   : Test_TimeAsString_IncludesLeadingZeros;
+    Test_TimeAsString_ms                     : Test_TimeAsString_ms;
+    Test_TimestampAsFilenameString           : Test_TimestampAsFilenameString;
+                                             
+    Test_LicenceCheck_GetsInValidLicence     : Test_LicenceCheck_GetsInValidLicence;
+    Test_LicenceCheck_GetsValidLicence       : Test_LicenceCheck_GetsValidLicence;
+   
+    Test_StringSplitter_Handles_Empty_String : Test_StringSplitter_Handles_Empty_String;
+    Test_StringSplitter_ReturnsRemainder     : Test_StringSplitter_ReturnsRemainder;
+    Test_StringSplitter_Splits_On_Tab        : Test_StringSplitter_Splits_On_Tab;
+
+ 
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Clock();
-TcUnit.RUN();
+      <ST><![CDATA[tcl_UnitTest.UnitTests.TestFramework();
+
+IF RisingEdge_TestsRunning.Test(tcl_UnitTest.UnitTests.TestFramework.TestsRunning) THEN
+    EnableAdsLogMessages_State := tcl_EventLog.EventLog.EnableAdsLogMessages; // store so we can restore previous state
+    EventLog.EnableAdsLogMessages := EnableAdsLogMessages_DuringTest;  // force the visibility of ads log messages
+END_IF
+
+IF FallingEdge_TestsRunning.Test(tcl_UnitTest.UnitTests.TestFramework.TestsRunning) THEN
+    EventLog.EnableAdsLogMessages := EnableAdsLogMessages_State; // restore previous state
+END_IF
 ]]></ST>
     </Implementation>
   </POU>

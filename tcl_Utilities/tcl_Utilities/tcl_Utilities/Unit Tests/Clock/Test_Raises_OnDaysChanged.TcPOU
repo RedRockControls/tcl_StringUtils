@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Test_Raises_OnDaysChanged" Id="{dadfe947-d3e3-0cc8-2098-8ccd5150a4f2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_Raises_OnDaysChanged EXTENDS TUnitTestBase
+IMPLEMENTS 
+    IEventHandler_OnDayChanged
+VAR
+    NowFromEvent : TIMESTRUCT;
+    
+    OnDaysChanged_Raised    : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{9bd40728-3acd-0754-09ad-f6d44c7fb0a9}">
+      <Declaration><![CDATA[METHOD  Execute
+VAR_INST
+    ClockEventSource : TClockEventSource;
+    Now              : TIMESTRUCT := (wDay := 23, wMonth := 12, wYear := 1945, wHour := 22, wMinute := 20, wSecond := 18);
+    OneDayLater      : TIMESTRUCT := (wDay := 24, wMonth := 12, wYear := 1945, wHour := 22, wMinute := 20, wSecond := 18);
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[OnDaysChanged_Raised := FALSE;
+
+ClockEventSource.Event_DayChanged.ClearEventHandlers().AddEventHandler(THIS^);
+
+ClockEventSource.Init(Now := Now);
+ClockEventSource(Now := OneDayLater);
+
+AssertEquals_BOOL(
+    Expected := TRUE,
+    Actual   := OnDaysChanged_Raised,
+    VariableName  := 'OnDaysChanged_Raised');
+
+AssertEquals_STRUCT(
+    Expected := OneDayLater,
+    Actual   := NowFromEvent,
+    VariableName  := 'NowFromEvent');
+
+Test_Finished();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="OnDayChanged" Id="{cdd1c03d-8054-017d-2eec-f1bfc76bc907}">
+      <Declaration><![CDATA[METHOD OnDayChanged
+VAR_INPUT
+	Now	: Tc2_Utilities.TIMESTRUCT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[NowFromEvent := Now;
+OnDaysChanged_Raised := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
