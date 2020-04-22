@@ -22,14 +22,16 @@ StringSplitter.Init(
     Delim1 := '$T',
     Delim2 := '');
 
-AssertEquals_STRING(
+Assertion.AssertEquals_STRING(
     Expected := '',
     Actual   := StringSplitter.GetNext(),
+    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetNext()');
 
-AssertEquals_BOOL(
+Assertion.AssertEquals_BOOL(
     Expected := FALSE,
     Actual   := StringSplitter.HasMore(),
+    ObjectName := _TestName,
     VariableName  := 'StringSplitter.HasMore()');
 
 

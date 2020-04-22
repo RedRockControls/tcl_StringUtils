@@ -22,19 +22,22 @@ StringSplitter.Init(
     Delim1 := '$T',
     Delim2 := '');
 
-AssertEquals_STRING(
+Assertion.AssertEquals_STRING(
     Expected := 'Bob',
     Actual   := StringSplitter.GetNext(),
+    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetNext()');
 
-AssertEquals_STRING(
+Assertion.AssertEquals_STRING(
     Expected := 'Charles',
     Actual   := StringSplitter.GetNext(),
+    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetNext()');
 
-AssertEquals_STRING(
+Assertion.AssertEquals_STRING(
     Expected := 'David',
     Actual   := StringSplitter.GetNext(),
+    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetNext()');
 
 

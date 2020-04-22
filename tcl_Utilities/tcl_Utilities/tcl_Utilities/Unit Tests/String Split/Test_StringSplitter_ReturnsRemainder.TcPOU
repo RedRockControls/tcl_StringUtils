@@ -22,29 +22,34 @@ StringSplitter.Init(
     Delim1 := '$T',
     Delim2 := '');
 
-AssertEquals_BOOL(
+Assertion.AssertEquals_BOOL(
     Expected := TRUE,
     Actual   := StringSplitter.HasMore(),
+    ObjectName := _TestName,
     VariableName  := 'StringSplitter.HasMore()');
     
-AssertEquals_STRING(
+Assertion.AssertEquals_STRING(
     Expected := 'Bob',
     Actual   := StringSplitter.GetNext(),
+    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetNext()');
     
-AssertEquals_STRING(
+Assertion.AssertEquals_STRING(
     Expected := 'Charles$TDavid',
     Actual   := StringSplitter.GetRemainder(),
+    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetRemainder()');
 
-AssertEquals_STRING(
+Assertion.AssertEquals_STRING(
     Expected := '',
     Actual   := StringSplitter.GetRemainder(),
+    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetRemainder()');
 
-AssertEquals_BOOL(
+Assertion.AssertEquals_BOOL(
     Expected := FALSE,
     Actual   := StringSplitter.HasMore(),
+    ObjectName := _TestName,
     VariableName  := 'StringSplitter.HasMore()');
     
 

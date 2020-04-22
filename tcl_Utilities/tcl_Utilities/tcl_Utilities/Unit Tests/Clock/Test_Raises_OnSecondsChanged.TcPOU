@@ -29,14 +29,16 @@ ClockEventSource.Event_SecondsChanged.ClearEventHandlers().AddEventHandler(THIS^
 ClockEventSource.Init(Now := Now);
 ClockEventSource(Now := OneSecondLater);
 
-AssertEquals_BOOL(
+Assertion.AssertEquals_BOOL(
     Expected := TRUE,
     Actual   := OnSecondsChanged_Raised,
+    ObjectName := _TestName,
     VariableName  := 'OnSecondsChanged_Raised');
 
-AssertEquals_STRUCT(
+Assertion.AssertEquals_STRUCT(
     Expected := OneSecondLater,
     Actual   := NowFromEvent,
+    ObjectName := _TestName,
     VariableName  := 'NowFromEvent');
 
 Test_Finished();]]></ST>

@@ -3,10 +3,10 @@
   <POU Name="PB_TestRunner" Id="{ec8045c6-529b-0ac2-038b-ab4cedabd62c}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PB_TestRunner 
 VAR
-    EnableAdsLogMessages_State : BOOL;
-    EnableAdsLogMessages_DuringTest : BOOL := FALSE; // inhibit Invalid Event Handler error message - confusing here
-    RisingEdge_TestsRunning  : TRisingEdge;
-    FallingEdge_TestsRunning : TFallingEdge;
+//    EnableAdsLogMessages_State : BOOL;
+//    EnableAdsLogMessages_DuringTest : BOOL := FALSE; // inhibit Invalid Event Handler error message - confusing here
+//    RisingEdge_TestsRunning  : TRisingEdge;
+//    FallingEdge_TestsRunning : TFallingEdge;
     
     Test_Raises_OnDaysChanged                : Test_Raises_OnDaysChanged;
     Test_Raises_OnHoursChanged               : Test_Raises_OnHoursChanged;
@@ -32,16 +32,16 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[tcl_UnitTest.UnitTests.TestFramework();
+      <ST><![CDATA[tcl_UnitTest.TestFramework.TestRunner();
 
-IF RisingEdge_TestsRunning.Test(tcl_UnitTest.UnitTests.TestFramework.TestsRunning) THEN
-    EnableAdsLogMessages_State := tcl_EventLog.EventLog.EnableAdsLogMessages; // store so we can restore previous state
-    EventLog.EnableAdsLogMessages := EnableAdsLogMessages_DuringTest;  // force the visibility of ads log messages
-END_IF
+//IF RisingEdge_TestsRunning.Test(tcl_UnitTest.UnitTests.TestFramework.TestsRunning) THEN
+//    EnableAdsLogMessages_State := tcl_EventLog.EventLog.EnableAdsLogMessages; // store so we can restore previous state
+//    EventLog.EnableAdsLogMessages := EnableAdsLogMessages_DuringTest;  // force the visibility of ads log messages
+//END_IF
 
-IF FallingEdge_TestsRunning.Test(tcl_UnitTest.UnitTests.TestFramework.TestsRunning) THEN
-    EventLog.EnableAdsLogMessages := EnableAdsLogMessages_State; // restore previous state
-END_IF
+//IF FallingEdge_TestsRunning.Test(tcl_UnitTest.UnitTests.TestFramework.TestsRunning) THEN
+//    EventLog.EnableAdsLogMessages := EnableAdsLogMessages_State; // restore previous state
+//END_IF
 ]]></ST>
     </Implementation>
   </POU>

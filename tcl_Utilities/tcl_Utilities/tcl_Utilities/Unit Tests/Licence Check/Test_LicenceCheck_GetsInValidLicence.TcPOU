@@ -30,9 +30,10 @@ END_IF
 LicenceCheck();
 
 IF LicenceCheck.CheckComplete THEN
-    AssertEquals_BOOL(
+    Assertion.AssertEquals_BOOL(
         Expected := FALSE,
         Actual   := LicenceCheck.IsValid,
+        ObjectName := _TestName,
         VariableName  := 'LicenceCheck.IsValid');
     Test_Finished();
 END_IF

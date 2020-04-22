@@ -29,14 +29,16 @@ ClockEventSource.Event_DayChanged.ClearEventHandlers().AddEventHandler(THIS^);
 ClockEventSource.Init(Now := Now);
 ClockEventSource(Now := OneDayLater);
 
-AssertEquals_BOOL(
+Assertion.AssertEquals_BOOL(
     Expected := TRUE,
     Actual   := OnDaysChanged_Raised,
+    ObjectName := _TestName,
     VariableName  := 'OnDaysChanged_Raised');
 
-AssertEquals_STRUCT(
+Assertion.AssertEquals_STRUCT(
     Expected := OneDayLater,
     Actual   := NowFromEvent,
+    ObjectName := _TestName,
     VariableName  := 'NowFromEvent');
 
 Test_Finished();]]></ST>
