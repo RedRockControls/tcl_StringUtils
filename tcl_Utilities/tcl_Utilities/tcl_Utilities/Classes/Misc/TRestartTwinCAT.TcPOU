@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="TRestartTwinCAT" Id="{ace23063-8b2a-0448-0473-0f76593dbf3c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TRestartTwinCAT
+VAR
+    _Execution : TExecution;
+    State : INT;
+    StateMonitor : TValueMonitor;
+    
+    OnTimer : TOnTimer(Presettime := 1.0);
+    TC_Restart1 : TC_Restart;
+END_VAR
+VAR CONSTANT
+    sInit     : INT := 0;
+    sDelay    : INT := 1;
+    sRestart  : INT := 2;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[StateMonitor.Test(State);
+CASE State OF
+    sInit:
+        IF _Execution.Starting THEN
+            OnTimer.Reset();
+            TC_Restart1.RESTART := FALSE;
+            _Execution.SetBusy();
+            State := sDelay;
+		END_IF
+        
+    sDelay:
+        IF OnTimer.Run() THEN
+            State := sRestart;
+		END_IF
+        
+    sRestart:
+        IF StateMonitor.Changed THEN
+            TC_Restart1.RESTART := TRUE;
+        ELSE
+            IF NOT TC_Restart1.BUSY THEN
+                IF TC_Restart1.ERR THEN
+                    _Execution.SetError(ErrorId := TC_Restart1.ERRID);
+                ELSE
+                    _Execution.SetDone();
+                END_IF
+                State := sInit;
+            END_IF
+        END_IF
+END_CASE
+
+TC_Restart1(
+	NETID:= , 
+	RESTART:= , 
+	TMOUT:= , 
+	BUSY=> , 
+	ERR=> , 
+	ERRID=> );
+
+
+]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{ea041f5e-8d4e-0791-353c-ed3b53ca2fc2}">
+      <Declaration><![CDATA[METHOD Execute : BOOL
+VAR_INPUT
+    AmsNetId : T_AmsNetID;
+    Delay : LREAL; // seconds
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[OnTimer.PresetTime := Delay;
+TC_Restart1.NETID := AmsNetId;
+Execute := _Execution.Start();
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Result" Id="{0dad5be6-741e-0a20-2135-795ae2c21a0a}">
+      <Declaration><![CDATA[PROPERTY Result : IExecutionResult]]></Declaration>
+      <Get Name="Get" Id="{a6553ea5-dea5-02d9-387b-edab675d4199}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Result := _Execution;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

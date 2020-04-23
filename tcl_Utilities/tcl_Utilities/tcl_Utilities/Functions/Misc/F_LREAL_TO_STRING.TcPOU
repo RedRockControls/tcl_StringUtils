@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="F_LREAL_TO_STRING" Id="{54229989-9fd2-4024-a9b0-09d27c169277}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_LREAL_TO_STRING : STRING
+VAR_INPUT
+    Value : LREAL;
+    Precision : INT;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[F_LREAL_TO_STRING := LREAL_TO_FMTSTR(in := Value,
+                                     iPrecision := Precision,
+                                     bRound := TRUE);
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

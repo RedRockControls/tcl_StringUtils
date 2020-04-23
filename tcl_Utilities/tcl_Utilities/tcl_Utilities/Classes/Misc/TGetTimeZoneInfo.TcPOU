@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="TGetTimeZoneInfo" Id="{d23e141b-bc29-04fc-3517-af66238eae45}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TGetTimeZoneInfo
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+    _Execution : TExecution;
+    FB_GetTimeZoneInformation1 : FB_GetTimeZoneInformation;
+
+    
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FB_GetTimeZoneInformation1(
+	sNetID:= , 
+	bExecute:= _Execution.Starting, 
+	tTimeout:= , 
+	bBusy=> , 
+	bError=> , 
+	nErrID=> , 
+	tzID=> , 
+	tzInfo=> );
+    
+IF _Execution.Starting THEN
+    _Execution.SetBusy();
+END_IF
+
+IF _Execution.Busy AND NOT FB_GetTimeZoneInformation1.bBusy THEN
+    IF FB_GetTimeZoneInformation1.bError THEN
+        _Execution.SetError(ErrorId := FB_GetTimeZoneInformation1.nErrID);
+    ELSE
+        _Execution.SetDone();
+	END_IF
+END_IF
+
+]]></ST>
+    </Implementation>
+    <Property Name="Execution" Id="{3e7e3ca9-41a5-0e3d-1cfb-58e0fc1b7aef}">
+      <Declaration><![CDATA[PROPERTY Execution : IExecution]]></Declaration>
+      <Get Name="Get" Id="{75557605-e1bf-054a-01ab-951eb37ae38e}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Execution := _Execution;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="TimeZoneInfo" Id="{254f1822-6aa1-0279-1d5c-6ebe5e40f94b}">
+      <Declaration><![CDATA[PROPERTY TimeZoneInfo : ST_TimeZoneInformation]]></Declaration>
+      <Get Name="Get" Id="{baeed17f-0ab4-0f57-287c-e6a1b725650f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[TimeZoneInfo := FB_GetTimeZoneInformation1.tzInfo;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

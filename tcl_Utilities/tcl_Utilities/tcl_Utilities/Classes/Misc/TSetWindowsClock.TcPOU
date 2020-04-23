@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="TSetWindowsClock" Id="{4d1bc0b8-9fe6-0162-2bee-7a57f7345d8c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TSetWindowsClock
+VAR
+    Execution : TExecution;
+    NT_SetLocalTime1 : NT_SetLocalTime;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[NT_SetLocalTime1(
+	NETID:= , 
+	TIMESTR:= , 
+	START:= Execution.Starting, 
+	TMOUT:= , 
+	BUSY=> , 
+	ERR=> , 
+	ERRID=> );
+    
+IF Execution.Starting THEN
+    Execution.SetBusy();
+END_IF
+
+IF Execution.Busy AND NOT NT_SetLocalTime1.BUSY THEN
+    IF NT_SetLocalTime1.ERR THEN
+        Execution.SetError(ErrorId := NT_SetLocalTime1.ERRID);
+    ELSE
+        Execution.SetDone();
+	END_IF
+END_IF
+
+]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{33693459-5f31-092d-2f4f-dbe9fe75b222}">
+      <Declaration><![CDATA[METHOD Execute : BOOL
+VAR_INPUT
+    AmsNetId : T_AmsNetID;
+    TimeStruct : TimeStruct;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF Execution.Start() THEN
+    NT_SetLocalTime1.TIMESTR := TimeStruct;
+    NT_SetLocalTime1.NETID := AmsNetId;
+    Execute := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="ExecutionResult" Id="{50d90d7f-91d9-0fde-341e-05e92f759faf}">
+      <Declaration><![CDATA[PROPERTY ExecutionResult  : IExecutionResult]]></Declaration>
+      <Get Name="Get" Id="{3e3a2405-6dfa-05d7-3b45-82ed283c24e3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ExecutionResult := Execution;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>

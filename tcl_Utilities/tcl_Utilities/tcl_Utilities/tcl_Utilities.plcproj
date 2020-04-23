@@ -18,9 +18,9 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_Utilities</Title>
-    <ProjectVersion>1.0.7.0</ProjectVersion>
+    <ProjectVersion>1.0.8.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>Assertion class used in unit tests</Description>
+    <Description>Misc classes added from Tc_Helper</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory xmlns="">
@@ -78,6 +78,36 @@
     <Compile Include="Classes\Licence Check\TLicenceCheck.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Classes\Misc\TCounter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Misc\TCsvString.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Misc\TGetTimeZoneInfo.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Misc\TRestartTwinCAT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Misc\TRingCounter_INT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Misc\TRingCounter_UDINT.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Misc\TRollingAverage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Misc\TSetWindowsClock.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Misc\TShutdown.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Misc\TStartProcess.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Classes\String Split\TStringSplitter.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +124,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\Value Monitor\TValueMonitorEx.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Function Blocks\FB_AutoReset.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Function Blocks\FB_ValueChanged.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\Date Time Formatting\F_DateAsString.TcPOU">
@@ -118,6 +154,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\General\F_GetAdsPort.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\Misc\F_Assert.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\Misc\F_Equals.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\Misc\F_LREAL_TO_STRING.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\Misc\F_PadString.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\String Formatting\F_FormatString1.TcPOU">
@@ -188,6 +236,10 @@
     </Compile>
     <Compile Include="GlobalTextList.TcGTLO">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Param.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
@@ -264,12 +316,15 @@
     <Folder Include="Classes\Edge Detection" />
     <Folder Include="Classes\Licence Check" />
     <Folder Include="Classes\Clock" />
+    <Folder Include="Classes\Misc" />
     <Folder Include="Classes\String Split" />
     <Folder Include="Classes\Value Monitor" />
     <Folder Include="Classes\Timers" />
+    <Folder Include="Function Blocks" />
     <Folder Include="Functions" />
     <Folder Include="Functions\Date Time Formatting" />
     <Folder Include="Functions\General" />
+    <Folder Include="Functions\Misc" />
     <Folder Include="Functions\String Formatting" />
     <Folder Include="Visualisation" />
     <Folder Include="Unit Tests" />
@@ -345,6 +400,10 @@
     <PlaceholderReference Include="tcl_Events">
       <DefaultResolution>tcl_Events, * (Red Rock Controls Limited)</DefaultResolution>
       <Namespace>tcl_Events</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="tcl_Execution">
+      <DefaultResolution>tcl_Execution, * (Red Rock Controls Limited)</DefaultResolution>
+      <Namespace>tcl_Execution</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="tcl_UnitTest">
       <DefaultResolution>tcl_UnitTest, * (Red Rock Controls Limited)</DefaultResolution>

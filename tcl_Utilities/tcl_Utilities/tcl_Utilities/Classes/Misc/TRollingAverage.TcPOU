@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="TRollingAverage" Id="{accb748c-a23e-031b-313f-6e7939502a8e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TRollingAverage
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+    pSamples : POINTER TO LREAL;
+    SampleCount : UDINT;
+    MaxSamples : UDINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="AddSample" Id="{e0e47fcd-c523-0260-35a2-73a764a09a40}">
+      <Declaration><![CDATA[METHOD AddSample
+VAR_INPUT
+    Value : LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF pSamples > 0 THEN
+    IF SampleCount < MaxSamples THEN
+        pSamples[SampleCount] := Value;
+        SampleCount := SampleCount + 1;
+    ELSE
+        MEMMOVE(
+            destAddr := ADR(pSamples[0]),
+            srcAddr  := ADR(pSamples[1]),
+            n        := SIZEOF(pSamples[0]) * (MaxSamples-1));
+        pSamples[MaxSamples - 1] := Value;
+    END_IF
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Clear" Id="{c2ee7530-b6ad-0558-0d66-8cb678e191dc}">
+      <Declaration><![CDATA[METHOD Clear
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF pSamples > 0 THEN
+    MEMSET(
+        destAddr := pSamples,
+        fillByte := 0,
+        n        := MaxSamples * SIZEOF(pSamples[0]));
+        
+    SampleCount := 0;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_exit" Id="{e933eafc-4652-0b34-34e7-ed6815d6d2e0}">
+      <Declaration><![CDATA[METHOD FB_exit : BOOL
+VAR_INPUT
+	bInCopyCode : BOOL; // if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF bInCopyCode = FALSE THEN // avoid deleting samples on online change!
+    __DELETE(pSamples);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{304218cd-9cf9-0959-0655-fd4d5e2df93e}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+    MaxSamples : UDINT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pSamples := __NEW(LREAL,MaxSamples);
+THIS^.MaxSamples := MaxSamples;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetAverage" Id="{b54ae141-3192-06ad-07c8-620dac680633}">
+      <Declaration><![CDATA[METHOD GetAverage : LREAL
+VAR
+    i : UDINT;
+    Sum : LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF pSamples > 0 AND SampleCount > 0 THEN
+    FOR i := 0 TO SampleCount - 1 DO
+        Sum := Sum + pSamples[i];
+    END_FOR
+    GetAverage := Sum/SampleCount;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

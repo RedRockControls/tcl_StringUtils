@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="F_PadString" Id="{7b6e9d46-f1fc-083b-1838-cd73da73a134}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_PadString : T_MaxString // pad string with spaces or trim from rhs to fix length of string
+VAR_INPUT
+    InputString : T_MaxString;
+    Length : UINT;
+END_VAR
+VAR
+    InputStringLength : UINT;
+    Result : T_MaxString;
+    TrimLength : UINT;
+    PaddingLength : UINT;
+    i : UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[InputStringLength := INT_TO_UINT(MAX(0,LEN(InputString)));
+Result := InputString;
+
+IF InputStringLength > Length THEN
+    TrimLength := InputStringLength - Length;
+    Result := F_RTrimEx(TrimLength,Result);
+    
+ELSIF InputStringLength < Length THEN
+    PaddingLength := Length - InputStringLength;
+
+    FOR i := 1 TO PaddingLength DO
+        Result := CONCAT(Result,' ');
+	END_FOR
+    
+END_IF
+
+F_PadString := Result;
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

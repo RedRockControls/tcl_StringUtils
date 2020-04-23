@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="TRingCounter_INT" Id="{8a8210f6-78b5-0e52-35a8-d458f4458b57}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TRingCounter_INT
+VAR
+    Count : INT;
+    _StartValue : INT;
+    _EndValue : INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Methods" Id="{b20cae32-0d3c-0a77-3a34-a15aefddb488}" />
+    <Folder Name="Properties" Id="{a95977ee-1d05-03eb-102a-8a7d47d5563d}" />
+    <Property Name="EndValue" Id="{9fa55c47-b7c8-0f79-330a-b802d766ecf0}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY EndValue : INT]]></Declaration>
+      <Get Name="Get" Id="{86e2d56f-ea9a-093c-3711-bb886af6fb7f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[EndValue := _EndValue;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{d2342d71-9093-0f04-20d8-b39c3b97ec77}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_EndValue := EndValue;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="FB_init" Id="{ae48539c-217e-082d-1915-d71ab05a4d01}" FolderPath="Methods\">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+
+    StartValue : INT;
+    EndValue : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^._StartValue := StartValue;
+THIS^._EndValue := EndValue;
+Reset();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Inc" Id="{e4194c23-04f5-0360-2f2c-232d18402ffa}" FolderPath="Methods\">
+      <Declaration><![CDATA[METHOD Inc
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Count := Count + 1;
+IF Count > EndValue THEN
+    Reset();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="NextValue" Id="{a99f870c-8d1e-069d-2f0d-fc9f0c7fe44b}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY NextValue : INT]]></Declaration>
+      <Get Name="Get" Id="{6a09d59d-e204-0703-1be3-b2579699da08}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[IF Count = EndValue THEN
+    NextValue := StartValue;
+ELSE
+    NextValue := Count + 1;
+END_IF]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Reset" Id="{ecf49509-ee4c-0e01-3656-a7b72083a555}" FolderPath="Methods\">
+      <Declaration><![CDATA[METHOD Reset
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Count := StartValue;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="StartValue" Id="{5cdbdd43-effb-0a63-0bd3-e32d3f9c3844}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY StartValue : INT]]></Declaration>
+      <Get Name="Get" Id="{a77e0a3c-47cf-096d-3253-8730386a2966}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[StartValue := _StartValue;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{61406e5a-35ed-0f50-1944-f3f04d44fdb3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_StartValue := StartValue;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="Value" Id="{3bc9b703-91fc-0298-3887-842936672537}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY Value : INT]]></Declaration>
+      <Get Name="Get" Id="{2319fd5f-9959-0a8c-1162-1047ddfc53f2}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Value := Count;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{0a82fea8-415b-0666-03eb-aa33c035daec}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Count := Value;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>
