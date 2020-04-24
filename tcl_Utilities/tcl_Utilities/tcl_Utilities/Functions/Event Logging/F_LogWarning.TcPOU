@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="F_LogWarning" Id="{e17ba9d2-e637-06e2-2c27-e11fe52482dd}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_LogWarning : T_MaxString 
+VAR_INPUT
+    Source  : T_MaxString;
+    Message : T_MaxString;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ADSLOGSTR(
+    msgCtrlMask := ADSLOG_MSGTYPE_STRING OR ADSLOG_MSGTYPE_WARN OR ADSLOG_MSGTYPE_LOG,
+    msgFmtStr := F_FormatStringEx2('%s : %s',Source,Message),
+    strArg := '');
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

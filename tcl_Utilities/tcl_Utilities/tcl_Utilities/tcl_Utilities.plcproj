@@ -18,9 +18,10 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_Utilities</Title>
-    <ProjectVersion>1.0.8.0</ProjectVersion>
+    <ProjectVersion>1.0.9.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>Misc classes added from Tc_Helper</Description>
+    <Description>F_LogError, etc added
+tcl_EventLog lib ref removed</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory xmlns="">
@@ -34,6 +35,10 @@
     </SelectedLibraryCategories>
     <Licenses>
     </Licenses>
+    <DefaultNamespace>
+    </DefaultNamespace>
+    <Placeholder>
+    </Placeholder>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Classes\Clock\Event Definitions\Day Changed\IEventHandler_OnDayChanged.TcIO">
@@ -150,6 +155,15 @@
     <Compile Include="Functions\Date Time Formatting\F_TimestampAsFilenameString.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Functions\Event Logging\F_LogError.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\Event Logging\F_LogMessage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\Event Logging\F_LogWarning.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Functions\General\F_ClearMem.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -160,12 +174,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\Misc\F_Equals.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\Misc\F_LREAL_TO_STRING.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\Misc\F_PadString.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\String Formatting\F_FormatString1.TcPOU">
@@ -222,7 +230,13 @@
     <Compile Include="Functions\String Formatting\F_FormatStringEx8.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Functions\String Formatting\F_LREAL_TO_STRING.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Functions\String Formatting\F_LTrimEx.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\String Formatting\F_PadString.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\String Formatting\F_RTrimEx.TcPOU">
@@ -325,6 +339,7 @@
     <Folder Include="Functions\Date Time Formatting" />
     <Folder Include="Functions\General" />
     <Folder Include="Functions\Misc" />
+    <Folder Include="Functions\Event Logging" />
     <Folder Include="Functions\String Formatting" />
     <Folder Include="Visualisation" />
     <Folder Include="Unit Tests" />
@@ -392,10 +407,6 @@
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
-    </PlaceholderReference>
-    <PlaceholderReference Include="tcl_EventLog">
-      <DefaultResolution>tcl_EventLog, * (Red Rock Controls Limited)</DefaultResolution>
-      <Namespace>tcl_EventLog</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="tcl_Events">
       <DefaultResolution>tcl_Events, * (Red Rock Controls Limited)</DefaultResolution>
