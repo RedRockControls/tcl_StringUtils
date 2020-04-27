@@ -18,9 +18,9 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_StringUtils</Title>
-    <ProjectVersion>1.0.0.0</ProjectVersion>
+    <ProjectVersion>1.0.1.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>Renamd from tcl_Utilities</Description>
+    <Description>Unit tests moved to base class lib</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory xmlns="">
@@ -143,45 +143,8 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Unit Tests\Date Time Formatting Tests\Test_DateAsString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\Date Time Formatting Tests\Test_DateTimeAsString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\Date Time Formatting Tests\Test_DateTimeAsString_ms.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\Date Time Formatting Tests\Test_TimeAsString_24HourFormat.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\Date Time Formatting Tests\Test_TimeAsString_IncludesLeadingZeros.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\Date Time Formatting Tests\Test_TimestampAsFilenameString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\Date Time Formatting Tests\Test_TimeAsString_ms.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\PB_TestRunner.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Split\Test_StringSplitter_Handles_Empty_String.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Split\Test_StringSplitter_ReturnsRemainder.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Split\Test_StringSplitter_Splits_On_Tab.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Version\Global_Version.TcGVL">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Visualisation\Visualization.TcVIS">
-      <SubType>Code</SubType>
-      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="Visualization Manager.TcVMO">
       <SubType>Code</SubType>
@@ -192,12 +155,6 @@
     <Folder Include="Functions" />
     <Folder Include="Functions\Date Time Formatting" />
     <Folder Include="Functions\String Formatting" />
-    <Folder Include="Unit Tests\String Split" />
-    <Folder Include="Visualisation" />
-    <Folder Include="Unit Tests">
-      <ExcludeFromBuild>false</ExcludeFromBuild>
-    </Folder>
-    <Folder Include="Unit Tests\Date Time Formatting Tests" />
     <Folder Include="Version" />
   </ItemGroup>
   <ItemGroup>
@@ -258,10 +215,6 @@
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
-    </PlaceholderReference>
-    <PlaceholderReference Include="tcl_UnitTest">
-      <DefaultResolution>tcl_UnitTest, * (Red Rock Controls Limited)</DefaultResolution>
-      <Namespace>tcl_UnitTest</Namespace>
     </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
