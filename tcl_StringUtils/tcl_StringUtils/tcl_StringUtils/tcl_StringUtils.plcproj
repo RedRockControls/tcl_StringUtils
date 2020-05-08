@@ -18,9 +18,9 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_StringUtils</Title>
-    <ProjectVersion>1.0.1.0</ProjectVersion>
+    <ProjectVersion>1.0.2.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>Unit tests moved to base class lib</Description>
+    <Description>TLongString added</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory xmlns="">
@@ -40,6 +40,9 @@
     </Placeholder>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Classes\TLongString.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Classes\TStringSplitter.TcPOU">
       <SubType>Code</SubType>
     </Compile>

@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="TLongString" Id="{4f76a42e-efc4-0a24-11ce-f15c5b5be96a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK TLongString
+VAR
+    buffer : STRING(MAX_LENGTH);
+    CharCount : UDINT;
+END_VAR
+VAR CONSTANT
+    MAX_LENGTH : UDINT := 1024;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Folder Name="Methods" Id="{4ca1bcb1-906f-00e5-39cb-fb6e50c05ee1}" />
+    <Folder Name="Properties" Id="{7107abee-b73f-028b-095e-7d2d51865b9b}" />
+    <Property Name="Address" Id="{b69284a4-93a9-0e3c-0a6f-5ba5e2265a20}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY Address : PVOID]]></Declaration>
+      <Get Name="Get" Id="{ac2bd050-d22e-00d7-276b-20d518bee465}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Address := ADR(Buffer);
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="AppendString" Id="{69d5f28e-5ae7-0a59-2bd2-d6510b4f8388}" FolderPath="Methods\">
+      <Declaration><![CDATA[METHOD AppendString
+VAR_INPUT
+    str : T_MaxString;
+END_VAR
+VAR
+    stringLength : UDINT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[stringLength := INT_TO_UDINT(LEN(str));
+
+IF (stringLength + CharCount < MAX_LENGTH - 1) THEN
+    MEMCPY(
+        destAddr := Address + CharCount,
+        srcAddr  := ADR(str),
+        n        := stringLength);
+    CharCount := CharCount + stringLength;       
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Clear" Id="{c88a6811-99b0-0834-3100-0c604c7900b4}" FolderPath="Methods\">
+      <Declaration><![CDATA[METHOD Clear
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[MEMSET(Address,0,MAX_LENGTH);
+CharCount := 0;
+    
+]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Length" Id="{1029f89c-3b5a-07d2-2fc2-d66563aa1670}" FolderPath="Properties\">
+      <Declaration><![CDATA[PROPERTY Length : UDINT]]></Declaration>
+      <Get Name="Get" Id="{a7ed157d-dc6a-0aaa-35b3-3c1cb1470d58}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Length := CharCount;
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>
