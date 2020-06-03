@@ -18,9 +18,9 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_StringUtils</Title>
-    <ProjectVersion>1.0.3.0</ProjectVersion>
+    <ProjectVersion>1.0.4.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>Unit Tests added</Description>
+    <Description>F_TypeClassToString added</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory xmlns="">
@@ -44,6 +44,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\TStringSplitter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\Conversion\F_TypeClassToString.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\Date Time Formatting\F_DateAsString.TcPOU">
@@ -146,45 +149,8 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Unit Tests\PB_TestRunner.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_DateAsString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_DateTimeAsString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_DateTimeAsString_ms.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_TimeAsString_24HourFormat.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_TimeAsString_IncludesLeadingZeros.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_TimeAsString_ms.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_TimestampAsFilenameString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Utils\String Split\Test_StringSplitter_Handles_Empty_String.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Utils\String Split\Test_StringSplitter_ReturnsRemainder.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Unit Tests\String Utils\String Split\Test_StringSplitter_Splits_On_Tab.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Version\Global_Version.TcGVL">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Visualisation\Visualization.TcVIS">
-      <SubType>Code</SubType>
-      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="Visualization Manager.TcVMO">
       <SubType>Code</SubType>
@@ -194,57 +160,11 @@
     <Folder Include="Classes" />
     <Folder Include="Functions" />
     <Folder Include="Functions\Date Time Formatting" />
+    <Folder Include="Functions\Conversion" />
     <Folder Include="Functions\String Formatting" />
-    <Folder Include="Visualisation" />
-    <Folder Include="Unit Tests" />
-    <Folder Include="Unit Tests\String Utils" />
-    <Folder Include="Unit Tests\String Utils\Date Time Formatting Tests" />
-    <Folder Include="Unit Tests\String Utils\String Split" />
     <Folder Include="Version" />
   </ItemGroup>
   <ItemGroup>
-    <PlaceholderReference Include="System_VisuElemMeter">
-      <DefaultResolution>VisuElemMeter, 3.5.13.0 (System)</DefaultResolution>
-      <Namespace>VisuElemMeter</Namespace>
-      <SystemLibrary>true</SystemLibrary>
-      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
-    </PlaceholderReference>
-    <PlaceholderReference Include="System_VisuElems">
-      <DefaultResolution>VisuElems, 3.5.13.40 (System)</DefaultResolution>
-      <Namespace>VisuElems</Namespace>
-      <SystemLibrary>true</SystemLibrary>
-      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
-    </PlaceholderReference>
-    <PlaceholderReference Include="System_VisuElemsSpecialControls">
-      <DefaultResolution>VisuElemsSpecialControls, 3.5.13.0 (System)</DefaultResolution>
-      <Namespace>VisuElemsSpecialControls</Namespace>
-      <SystemLibrary>true</SystemLibrary>
-      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
-    </PlaceholderReference>
-    <PlaceholderReference Include="System_VisuElemsWinControls">
-      <DefaultResolution>VisuElemsWinControls, 3.5.13.20 (System)</DefaultResolution>
-      <Namespace>VisuElemsWinControls</Namespace>
-      <SystemLibrary>true</SystemLibrary>
-      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
-    </PlaceholderReference>
-    <PlaceholderReference Include="System_VisuElemTextEditor">
-      <DefaultResolution>VisuElemTextEditor, 3.5.13.0 (System)</DefaultResolution>
-      <Namespace>VisuElemTextEditor</Namespace>
-      <SystemLibrary>true</SystemLibrary>
-      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
-    </PlaceholderReference>
-    <PlaceholderReference Include="system_visuinputs">
-      <DefaultResolution>visuinputs, 3.5.13.0 (system)</DefaultResolution>
-      <Namespace>visuinputs</Namespace>
-      <SystemLibrary>true</SystemLibrary>
-      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
-    </PlaceholderReference>
-    <PlaceholderReference Include="System_VisuNativeControl">
-      <DefaultResolution>VisuNativeControl, 3.5.13.0 (System)</DefaultResolution>
-      <Namespace>VisuNativeControl</Namespace>
-      <SystemLibrary>true</SystemLibrary>
-      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
-    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>
@@ -261,10 +181,6 @@
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
     </PlaceholderReference>
-    <PlaceholderReference Include="tcl_UnitTest">
-      <DefaultResolution>tcl_UnitTest, * (Red Rock Controls Limited)</DefaultResolution>
-      <Namespace>tcl_UnitTest</Namespace>
-    </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="tcl_StringUtils.tmc">
@@ -274,8 +190,8 @@
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
-  <Data>
-    <o xml:space="preserve" t="OptionKey">
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
       <v n="Name">"&lt;ProjectRoot&gt;"</v>
       <d n="SubKeys" t="Hashtable" ckt="String" cvt="OptionKey">
         <v>{192FAD59-8248-4824-A8DE-9177C94C195A}</v>
@@ -381,14 +297,14 @@
       </d>
       <d n="Values" t="Hashtable" />
     </o>
-  </Data>
-  <TypeList>
-    <Type n="Boolean">System.Boolean</Type>
-    <Type n="Hashtable">System.Collections.Hashtable</Type>
-    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
-    <Type n="String">System.String</Type>
-  </TypeList>
-</XmlArchive>
+        </Data>
+        <TypeList>
+          <Type n="Boolean">System.Boolean</Type>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
     </PlcProjectOptions>
   </ProjectExtensions>
 </Project>
