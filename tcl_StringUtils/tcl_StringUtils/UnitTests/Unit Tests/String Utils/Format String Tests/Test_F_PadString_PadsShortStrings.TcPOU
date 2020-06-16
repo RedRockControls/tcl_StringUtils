@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Test_F_PadString_PadsShortStrings" Id="{027d78fd-7523-426a-a6c3-d6c4d9f6c3fb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_F_PadString_PadsShortStrings EXTENDS TUnitTestBase
+VAR
+    SubjectString : T_MaxString;
+    ResultString : T_MaxString;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SubjectString := 'Bob';
+ResultString := F_PadString(
+                    InputString := SubjectString,
+                    Length := 20);
+                    
+                    
+Assertion.AssertEquals_INT(
+    Expected:= 20, 
+    Actual:= LEN(ResultString), 
+    ObjectName:= TestName, 
+    VariableName:= 'LEN(ResultString)');    
+
+Assertion.AssertEquals_STRING(
+    Expected:= 'Bob                 ', 
+    Actual:= ResultString, 
+    ObjectName:= TestName, 
+    VariableName:= 'ResultString');    
+
+
+TestFinished();              ]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
