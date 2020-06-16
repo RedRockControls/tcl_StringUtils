@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="Test_FormatStringWith8CharHexValue" Id="{53f01785-3605-42c9-b65f-2e65fa8ed572}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_FormatStringWith8CharHexValue EXTENDS TUnitTestBase
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+    FormattedString : T_MaxString;
+    Value : UDINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Value := 16#12AB;
+FormattedString := F_FormatString1('Hex value = 0x%0.8X',F_UDINT(Value));
+
+Assertion.AssertEquals_STRING(
+    Expected     := 'Hex value = 0x000012AB', 
+    Actual       := FormattedString, 
+    ObjectName   := _TestName, 
+    VariableName := 'FormattedString');
+
+TestFinished();
+    ]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

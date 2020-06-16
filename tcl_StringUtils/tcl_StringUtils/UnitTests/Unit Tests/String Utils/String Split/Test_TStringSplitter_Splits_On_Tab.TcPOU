@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="Test_TStringSplitter_Splits_On_Tab" Id="{86e3e891-db36-057f-3764-d41869894fb8}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_TStringSplitter_Splits_On_Tab EXTENDS TUnitTestBase
+VAR
+    StringSplitter : TStringSplitter;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+
+StringSplitter.Init(
+    Str    := 'Bob$TCharles$TDavid',
+    Delim1 := '$T',
+    Delim2 := '');
+
+Assertion.AssertEquals_STRING(
+    Expected := 'Bob',
+    Actual   := StringSplitter.GetNext(),
+    ObjectName := _TestName,
+    VariableName  := 'StringSplitter.GetNext()');
+
+Assertion.AssertEquals_STRING(
+    Expected := 'Charles',
+    Actual   := StringSplitter.GetNext(),
+    ObjectName := _TestName,
+    VariableName  := 'StringSplitter.GetNext()');
+
+Assertion.AssertEquals_STRING(
+    Expected := 'David',
+    Actual   := StringSplitter.GetNext(),
+    ObjectName := _TestName,
+    VariableName  := 'StringSplitter.GetNext()');
+
+
+TestFinished();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -2,169 +2,137 @@
   <PropertyGroup>
     <FileVersion>1.0.0.0</FileVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{dae8f580-8a97-407a-8aff-1b776c841669}</ProjectGuid>
+    <ProjectGuid>{9d9011f7-bc93-42db-a083-f8d9221daef0}</ProjectGuid>
     <SubObjectsSortedByName>True</SubObjectsSortedByName>
     <DownloadApplicationInfo>true</DownloadApplicationInfo>
     <WriteProductVersion>true</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
-    <Name>tcl_StringUtils</Name>
+    <Name>UnitTests</Name>
     <ProgramVersion>3.1.4023.0</ProgramVersion>
-    <Application>{0dcaa1a4-3b93-444e-b2bd-a0a0cd66c6a6}</Application>
-    <TypeSystem>{be85152e-15ad-4a1f-ac0b-a6b5b5fa7023}</TypeSystem>
-    <Implicit_Task_Info>{216d4c10-6cfb-47d8-a87b-adeaf66fc987}</Implicit_Task_Info>
-    <Implicit_KindOfTask>{51aeb6fd-a735-4f2c-a050-5865be0f3440}</Implicit_KindOfTask>
-    <Implicit_Jitter_Distribution>{4877f572-b46a-4822-a960-91f32e4db726}</Implicit_Jitter_Distribution>
-    <LibraryReferences>{e0c726e9-c378-49b3-ad0b-beebf3e7434e}</LibraryReferences>
+    <Application>{568cecdc-e66a-4f8f-acc1-a588a8105ac7}</Application>
+    <TypeSystem>{0a6787e9-2d28-4113-bb98-266a6fe1bba9}</TypeSystem>
+    <Implicit_Task_Info>{6c996969-b813-4787-a6af-2f81d7007329}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{73c138d4-5d83-41bf-a9f0-934158737301}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{a824db02-519d-4e48-a0db-9e294d52b904}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{4f75adb1-210d-4540-85ff-539c44810e1c}</LibraryReferences>
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
-    <Title>tcl_StringUtils</Title>
-    <ProjectVersion>1.0.5.0</ProjectVersion>
+    <Title>tcl_StringUtils_UnitTests</Title>
+    <ProjectVersion>1.0.0.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>Library category corrected</Description>
-    <CombineIds>true</CombineIds>
-    <LibraryCategories>
-      <LibraryCategory>
-        <Id>{0d08a09c-9493-4b37-a26c-544e7211ff2d}</Id>
-        <Version>1.0.0.0</Version>
-        <DefaultName>tcl_ClassLibraries</DefaultName>
-      </LibraryCategory>
-    </LibraryCategories>
-    <SelectedLibraryCategories>
-      <Id>{0d08a09c-9493-4b37-a26c-544e7211ff2d}</Id>
-    </SelectedLibraryCategories>
-    <Licenses>
-    </Licenses>
-    <DefaultNamespace>
-    </DefaultNamespace>
-    <Placeholder>
-    </Placeholder>
+    <Description>Tests tcl_StringUtils V 1.0.5.0</Description>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Classes\TLongString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Classes\TStringSplitter.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\Conversion\F_TypeClassToString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\Date Time Formatting\F_DateAsString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\Date Time Formatting\F_DateTimeAsString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\Date Time Formatting\F_DateTimeAsString_ms.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\Date Time Formatting\F_TimeAsString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\Date Time Formatting\F_TimeAsString_ms.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\Date Time Formatting\F_TimestampAsFilenameString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatString1.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatString10.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatString2.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatString3.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatString4.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatString5.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatString6.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatString7.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatString8.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatStringEx1.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatStringEx10.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatStringEx2.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatStringEx3.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatStringEx4.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatStringEx5.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatStringEx6.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatStringEx7.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_FormatStringEx8.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_LREAL_TO_STRING.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_LTrimEx.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_PadString.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_RTrimEx.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_STRING_TO_ARG.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Functions\String Formatting\F_Trim.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GlobalTextList.TcGTLO">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Param.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Version\Global_Version.TcGVL">
+    <Compile Include="Unit Tests\PB_TestRunner.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_F_DateAsString_ReturnsDateString.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_F_DateTimeAsString_ReturnsDateTimeString.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_F_DateTimeAsString_ms_ReturnsDateTimeString.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_F_TimeAsString_ReturnsTimeString_24HourFormat.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_F_TimeAsString_ReturnsTimeStringWithLeadingZeros.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_F_TimeAsString_ms_ReturnsTimeString_ms.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_F_TimestampAsFilenameString_ReturnsFilenameString.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Format String Tests\Test_FormatStringWith4CharHexValue.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Format String Tests\Test_FormatStringWith8CharHexValue.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Format String Tests\Test_F_PadString_PadsShortStrings.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Format String Tests\Test_F_PadString_TruncsLongStrings.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\String Split\Test_TStringSplitter_Handles_Empty_String.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\String Split\Test_TStringSplitter_ReturnsRemainder.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\String Split\Test_TStringSplitter_Splits_On_Tab.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Visualization Manager.TcVMO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="VISUs\Visualization.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes" />
-    <Folder Include="Functions" />
-    <Folder Include="Functions\Date Time Formatting" />
-    <Folder Include="Functions\Conversion" />
-    <Folder Include="Functions\String Formatting" />
-    <Folder Include="Version" />
+    <Folder Include="Unit Tests" />
+    <Folder Include="Unit Tests\String Utils\Format String Tests" />
+    <Folder Include="Unit Tests\String Utils" />
+    <Folder Include="Unit Tests\String Utils\Date Time Formatting Tests" />
+    <Folder Include="Unit Tests\String Utils\String Split" />
+    <Folder Include="VISUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="System_VisuElemMeter">
+      <DefaultResolution>VisuElemMeter, 3.5.13.0 (System)</DefaultResolution>
+      <Namespace>VisuElemMeter</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuElems">
+      <DefaultResolution>VisuElems, 3.5.13.40 (System)</DefaultResolution>
+      <Namespace>VisuElems</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuElemsSpecialControls">
+      <DefaultResolution>VisuElemsSpecialControls, 3.5.13.0 (System)</DefaultResolution>
+      <Namespace>VisuElemsSpecialControls</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuElemsWinControls">
+      <DefaultResolution>VisuElemsWinControls, 3.5.13.20 (System)</DefaultResolution>
+      <Namespace>VisuElemsWinControls</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuElemTextEditor">
+      <DefaultResolution>VisuElemTextEditor, 3.5.13.0 (System)</DefaultResolution>
+      <Namespace>VisuElemTextEditor</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="system_visuinputs">
+      <DefaultResolution>visuinputs, 3.5.13.0 (system)</DefaultResolution>
+      <Namespace>visuinputs</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
+    <PlaceholderReference Include="System_VisuNativeControl">
+      <DefaultResolution>VisuNativeControl, 3.5.13.0 (System)</DefaultResolution>
+      <Namespace>VisuNativeControl</Namespace>
+      <SystemLibrary>true</SystemLibrary>
+      <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>
@@ -181,9 +149,17 @@
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
     </PlaceholderReference>
+    <PlaceholderReference Include="tcl_SimpleUnitTestLibrary">
+      <DefaultResolution>tcl_SimpleUnitTestLibrary, * (Red Rock Controls Limited)</DefaultResolution>
+      <Namespace>tcl_SimpleUnitTestLibrary</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="tcl_StringUtils">
+      <DefaultResolution>tcl_StringUtils, * (Red Rock Controls Limited)</DefaultResolution>
+      <Namespace>tcl_StringUtils</Namespace>
+    </PlaceholderReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="tcl_StringUtils.tmc">
+    <None Include="UnitTests.tmc">
       <SubType>Content</SubType>
     </None>
   </ItemGroup>
@@ -277,12 +253,6 @@
               <d n="Values" t="Hashtable" />
             </o>
           </d>
-          <d n="Values" t="Hashtable" />
-        </o>
-        <v>{8F99A816-E488-41E4-9FA3-846536012284}</v>
-        <o>
-          <v n="Name">"{8F99A816-E488-41E4-9FA3-846536012284}"</v>
-          <d n="SubKeys" t="Hashtable" />
           <d n="Values" t="Hashtable" />
         </o>
         <v>{40450F57-0AA3-4216-96F3-5444ECB29763}</v>
