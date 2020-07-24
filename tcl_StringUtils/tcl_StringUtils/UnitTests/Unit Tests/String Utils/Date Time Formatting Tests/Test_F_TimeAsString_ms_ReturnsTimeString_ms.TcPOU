@@ -10,7 +10,6 @@ END_VAR
       <ST><![CDATA[Assertion.AssertEquals_STRING(
     Expected := '06:05:04.135',
     Actual   := F_TimeAsString_ms(TimeStruct),
-    ObjectName := _TestName,
     VariableName  := 'F_TimeAsString_ms(TimeStruct)');
 
 

@@ -17,19 +17,16 @@ StringSplitter.Init(
 Assertion.AssertEquals_STRING(
     Expected := 'Bob',
     Actual   := StringSplitter.GetNext(),
-    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetNext()');
 
 Assertion.AssertEquals_STRING(
     Expected := 'Charles',
     Actual   := StringSplitter.GetNext(),
-    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetNext()');
 
 Assertion.AssertEquals_STRING(
     Expected := 'David',
     Actual   := StringSplitter.GetNext(),
-    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetNext()');
 
 

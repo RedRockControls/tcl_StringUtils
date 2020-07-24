@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="Test_F_PadString_TruncsLongStrings" Id="{277b310f-45dc-4306-844b-b4d7121604ac}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Test_F_PadString_TruncsLongStrings EXTENDS TUnitTestBase
 VAR
@@ -17,13 +17,11 @@ ResultString := F_PadString(
 Assertion.AssertEquals_INT(
     Expected:= 20, 
     Actual:= LEN(ResultString), 
-    ObjectName:= TestName, 
     VariableName:= 'LEN(ResultString)');    
 
 Assertion.AssertEquals_STRING(
     Expected:= 'A long message with ', 
     Actual:= ResultString, 
-    ObjectName:= TestName, 
     VariableName:= 'ResultString');    
 
 

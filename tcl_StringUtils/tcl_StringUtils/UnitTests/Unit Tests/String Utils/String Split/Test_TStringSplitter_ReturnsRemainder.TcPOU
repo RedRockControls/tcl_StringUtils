@@ -17,31 +17,26 @@ StringSplitter.Init(
 Assertion.AssertEquals_BOOL(
     Expected := TRUE,
     Actual   := StringSplitter.HasMore(),
-    ObjectName := _TestName,
     VariableName  := 'StringSplitter.HasMore()');
     
 Assertion.AssertEquals_STRING(
     Expected := 'Bob',
     Actual   := StringSplitter.GetNext(),
-    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetNext()');
     
 Assertion.AssertEquals_STRING(
     Expected := 'Charles$TDavid',
     Actual   := StringSplitter.GetRemainder(),
-    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetRemainder()');
 
 Assertion.AssertEquals_STRING(
     Expected := '',
     Actual   := StringSplitter.GetRemainder(),
-    ObjectName := _TestName,
     VariableName  := 'StringSplitter.GetRemainder()');
 
 Assertion.AssertEquals_BOOL(
     Expected := FALSE,
     Actual   := StringSplitter.HasMore(),
-    ObjectName := _TestName,
     VariableName  := 'StringSplitter.HasMore()');
     
 
