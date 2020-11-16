@@ -3,30 +3,37 @@
   <POU Name="PB_TestRunner" Id="{63470fcc-b57d-026d-334d-1963f895812d}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PB_TestRunner
 VAR
-    
-    Test_FormatStringWith4CharHexValue                     : Test_FormatStringWith4CharHexValue;
-    Test_FormatStringWith8CharHexValue                     : Test_FormatStringWith8CharHexValue;
+    TestSuite : TTestSuite;
+    Test_FormatStringWith4CharHexValue                     : Test_FormatStringWith4CharHexValue(TestSuite);
+    Test_FormatStringWith8CharHexValue                     : Test_FormatStringWith8CharHexValue(TestSuite);
                                                             
-    Test_F_DateAsString_ReturnsDateString                  : Test_F_DateAsString_ReturnsDateString;
-    Test_F_DateTimeAsString_ReturnsDateTimeString          : Test_F_DateTimeAsString_ReturnsDateTimeString;
-    Test_F_DateTimeAsString_ms_ReturnsDateTimeString       : Test_F_DateTimeAsString_ms_ReturnsDateTimeString;
-    Test_F_TimeAsString_ReturnsTimeString_24HourFormat     : Test_F_TimeAsString_ReturnsTimeString_24HourFormat;
-    Test_F_TimeAsString_ReturnsTimeStringWithLeadingZeros  : Test_F_TimeAsString_ReturnsTimeStringWithLeadingZeros;
-    Test_F_TimeAsString_ms_ReturnsTimeString_ms            : Test_F_TimeAsString_ms_ReturnsTimeString_ms;
-    Test_F_TimestampAsFilenameString_ReturnsFilenameString : Test_F_TimestampAsFilenameString_ReturnsFilenameString;
+    Test_F_DateAsString_ReturnsDateString                  : Test_F_DateAsString_ReturnsDateString(TestSuite);
+    Test_F_DateTimeAsString_ReturnsDateTimeString          : Test_F_DateTimeAsString_ReturnsDateTimeString(TestSuite);
+    Test_F_DateTimeAsString_ms_ReturnsDateTimeString       : Test_F_DateTimeAsString_ms_ReturnsDateTimeString(TestSuite);
+    Test_F_TimeAsString_ReturnsTimeString_24HourFormat     : Test_F_TimeAsString_ReturnsTimeString_24HourFormat(TestSuite);
+    Test_F_TimeAsString_ReturnsTimeStringWithLeadingZeros  : Test_F_TimeAsString_ReturnsTimeStringWithLeadingZeros(TestSuite);
+    Test_F_TimeAsString_ms_ReturnsTimeString_ms            : Test_F_TimeAsString_ms_ReturnsTimeString_ms(TestSuite);
+    Test_F_TimestampAsFilenameString_ReturnsFilenameString : Test_F_TimestampAsFilenameString_ReturnsFilenameString(TestSuite);
                                                             
-    Test_TStringSplitter_Handles_Empty_String              : Test_TStringSplitter_Handles_Empty_String;
-    Test_TStringSplitter_ReturnsRemainder                  : Test_TStringSplitter_ReturnsRemainder;
-    Test_TStringSplitter_Splits_On_Tab                     : Test_TStringSplitter_Splits_On_Tab;
+    Test_TStringSplitter_Handles_Empty_String              : Test_TStringSplitter_Handles_Empty_String(TestSuite);
+    Test_TStringSplitter_ReturnsRemainder                  : Test_TStringSplitter_ReturnsRemainder(TestSuite);
+    Test_TStringSplitter_Splits_On_Tab                     : Test_TStringSplitter_Splits_On_Tab(TestSuite);
                                                             
-    Test_F_PadString_PadsShortStrings                      : Test_F_PadString_PadsShortStrings;
-    Test_F_PadString_TruncsLongString                      : Test_F_PadString_TruncsLongStrings;
+    Test_F_PadString_PadsShortStrings                      : Test_F_PadString_PadsShortStrings(TestSuite);
+    Test_F_PadString_TruncsLongString                      : Test_F_PadString_TruncsLongStrings(TestSuite);
 
-
+    init : BOOL := TRUE;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[tcl_SimpleUnitTestLibrary.TestFramework.TestRunner(RunTestsSequentially := TRUE);
+      <ST><![CDATA[IF Init THEN
+    tcl_SimpleUnitTestLibrary.TestFramework.TestRunner.AddTestSuite(TestSuite);
+    Init := FALSE;
+END_IF
+
+tcl_SimpleUnitTestLibrary.TestFramework.TestRunner(
+    RunTestsSequentially := TRUE, 
+    ManualTestRunsOnly := TRUE);
 
 
 ]]></ST>
