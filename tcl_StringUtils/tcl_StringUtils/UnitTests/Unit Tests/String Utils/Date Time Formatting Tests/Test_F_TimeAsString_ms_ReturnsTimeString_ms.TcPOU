@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="Test_F_TimeAsString_ms_ReturnsTimeString_ms" Id="{cfe81a32-3eca-0666-0352-ea68d5a05067}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Test_F_TimeAsString_ms_ReturnsTimeString_ms EXTENDS TUnitTestBase
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_F_TimeAsString_ms_ReturnsTimeString_ms EXTENDS T_UnitTestBase
 VAR
     TimeStruct : TIMESTRUCT := (wHour := 6, wMinute := 5, wSecond := 4, wMilliseconds := 135);
 END_VAR

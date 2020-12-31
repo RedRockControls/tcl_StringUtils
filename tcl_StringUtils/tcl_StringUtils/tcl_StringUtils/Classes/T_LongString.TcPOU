@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
-  <POU Name="TLongString" Id="{4f76a42e-efc4-0a24-11ce-f15c5b5be96a}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK TLongString
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="T_LongString" Id="{4f76a42e-efc4-0a24-11ce-f15c5b5be96a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK T_LongString
 VAR
     buffer : STRING(MAX_LENGTH);
     CharCount : UDINT;

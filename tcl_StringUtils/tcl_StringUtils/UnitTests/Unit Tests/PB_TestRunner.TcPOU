@@ -3,7 +3,7 @@
   <POU Name="PB_TestRunner" Id="{63470fcc-b57d-026d-334d-1963f895812d}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PB_TestRunner
 VAR
-    TestSuite : TTestSuite;
+    TestSuite : T_TestSuite;
     Test_FormatStringWith4CharHexValue                     : Test_FormatStringWith4CharHexValue(TestSuite);
     Test_FormatStringWith8CharHexValue                     : Test_FormatStringWith8CharHexValue(TestSuite);
                                                             

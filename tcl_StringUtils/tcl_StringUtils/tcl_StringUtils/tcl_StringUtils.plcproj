@@ -18,9 +18,9 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_StringUtils</Title>
-    <ProjectVersion>1.0.5.0</ProjectVersion>
+    <ProjectVersion>1.1.0.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>Library category corrected</Description>
+    <Description>Naming convention updated</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory>
@@ -40,10 +40,10 @@
     </Placeholder>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Classes\TLongString.TcPOU">
+    <Compile Include="Classes\T_LongString.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\TStringSplitter.TcPOU">
+    <Compile Include="Classes\T_StringSplitter.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\Conversion\F_TypeClassToString.TcPOU">

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="Test_F_DateAsString_ReturnsDateString" Id="{dbb0c8d6-f694-0d2d-11c0-291b7b634d6f}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Test_F_DateAsString_ReturnsDateString EXTENDS TUnitTestBase
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_F_DateAsString_ReturnsDateString EXTENDS T_UnitTestBase
 VAR
     TimeStruct : TIMESTRUCT := (wDay := 23, wMonth := 12, wYear := 1945);
 END_VAR

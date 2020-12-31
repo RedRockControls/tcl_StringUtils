@@ -166,7 +166,7 @@ Updated to use tcl_SimpleUnitTestLibrary V1.0.2.0</Description>
   </ItemGroup>
   <ItemGroup>
     <PlaceholderResolution Include="tcl_SimpleUnitTestLibrary">
-      <Resolution>tcl_SimpleUnitTestLibrary, 1.0.2.0 (Red Rock Controls Limited)</Resolution>
+      <Resolution>tcl_SimpleUnitTestLibrary, 1.1.0.0 (Red Rock Controls Limited)</Resolution>
     </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>

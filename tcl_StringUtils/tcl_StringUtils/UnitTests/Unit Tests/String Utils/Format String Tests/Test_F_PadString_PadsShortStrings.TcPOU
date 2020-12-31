@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="Test_F_PadString_PadsShortStrings" Id="{027d78fd-7523-426a-a6c3-d6c4d9f6c3fb}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Test_F_PadString_PadsShortStrings EXTENDS TUnitTestBase
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_F_PadString_PadsShortStrings EXTENDS T_UnitTestBase
 VAR
     SubjectString : T_MaxString;
     ResultString : T_MaxString;

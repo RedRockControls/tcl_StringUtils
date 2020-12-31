@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="Test_TStringSplitter_Handles_Empty_String" Id="{3a7cf2cc-79a9-0132-02fd-8eb652eaae4e}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Test_TStringSplitter_Handles_Empty_String EXTENDS TUnitTestBase
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_TStringSplitter_Handles_Empty_String EXTENDS T_UnitTestBase
 VAR
-    StringSplitter : TStringSplitter;
+    StringSplitter : T_StringSplitter;
 END_VAR
 ]]></Declaration>
     <Implementation>

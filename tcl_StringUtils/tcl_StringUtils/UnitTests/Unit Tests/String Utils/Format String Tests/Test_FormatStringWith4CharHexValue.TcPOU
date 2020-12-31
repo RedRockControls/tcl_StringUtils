@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="Test_FormatStringWith4CharHexValue" Id="{c0c11d44-c536-4c7d-853a-9e40b1c7fd63}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Test_FormatStringWith4CharHexValue EXTENDS TUnitTestBase
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_FormatStringWith4CharHexValue EXTENDS T_UnitTestBase
 VAR_INPUT
 END_VAR
 VAR_OUTPUT

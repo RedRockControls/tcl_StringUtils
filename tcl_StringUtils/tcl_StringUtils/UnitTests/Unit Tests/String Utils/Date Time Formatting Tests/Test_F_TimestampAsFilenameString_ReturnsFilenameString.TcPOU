@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="Test_F_TimestampAsFilenameString_ReturnsFilenameString" Id="{be314818-0935-0ff5-2754-1e6cba9ef99d}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Test_F_TimestampAsFilenameString_ReturnsFilenameString EXTENDS TUnitTestBase
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_F_TimestampAsFilenameString_ReturnsFilenameString EXTENDS T_UnitTestBase
 VAR
     TimeStruct : TIMESTRUCT := (wDay := 23, wMonth := 12, wYear := 1945, wHour := 22, wMinute := 20, wSecond := 18, wMilliseconds := 512);
 END_VAR
