@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="F_ULINT_TO_TIMESTRUCT" Id="{47684dc6-03bf-0a5b-23fc-734c5e0950d4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_ULINT_TO_TIMESTRUCT : TIMESTRUCT
+VAR_INPUT
+	TimeStamp : ULINT; // data type og eventLogger3 timestamp - number of 100nS since 1601
+END_VAR
+VAR
+	pFileTime : POINTER TO T_FILETIME;
+	Result : TIMESTRUCT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[pFileTime := ADR(TimeStamp);
+Result := FILETIME_TO_SYSTEMTIME(pFileTime^);
+
+F_ULINT_TO_TIMESTRUCT := Result;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
