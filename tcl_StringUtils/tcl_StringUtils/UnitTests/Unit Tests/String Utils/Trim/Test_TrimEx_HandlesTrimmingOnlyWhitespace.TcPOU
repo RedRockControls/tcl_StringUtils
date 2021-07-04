@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Test_TrimEx_HandlesTrimmingOnlyWhitespace" Id="{1011966b-7bdd-0b90-36b5-e91990c87167}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_TrimEx_HandlesTrimmingOnlyWhitespace EXTENDS T_UnitTestBase
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	SubjectString : T_MaxString := '$T$T$T$T$T$R$R    $R';
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Assertion.AssertEquals_STRING(
+	Expected := '',
+	Actual := F_Trim(str := SubjectString),
+	VariableName := 'F_LTrimEx(SubjectString)');
+	
+TestFinished();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

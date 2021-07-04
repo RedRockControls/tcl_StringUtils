@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Test_RTrimEx_HandlesTrimmingNoChars" Id="{261f57eb-3cd6-0985-031c-cb8015df935d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_RTrimEx_HandlesTrimmingNoChars EXTENDS T_UnitTestBase
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	SubjectString : T_MaxString := 'Badger';
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Assertion.AssertEquals_STRING(
+	Expected := 'Badger',
+	Actual := F_RTrimEx(n := 0, str := SubjectString),
+	VariableName := 'F_LTrimEx(SubjectString)');
+	
+TestFinished();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

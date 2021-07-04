@@ -66,13 +66,43 @@ Updated to use tcl_SimpleUnitTestLibrary V1.0.2.0</Description>
     <Compile Include="Unit Tests\String Utils\Format String Tests\Test_F_PadString_TruncsLongStrings.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Unit Tests\String Utils\LTrimEx\Test_LTrimEx_HandlesEmptySubject.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\LTrimEx\Test_LTrimEx_HandlesTrimmingManyChars.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\LTrimEx\Test_LTrimEx_HandlesTrimmingNoChars.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\RTrimEx\Test_RTrimEx_HandlesEmptySubject.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\RTrimEx\Test_RTrimEx_HandlesTrimmingManyChars.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\RTrimEx\Test_RTrimEx_HandlesTrimmingNoChars.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Unit Tests\String Utils\String Split\Test_TStringSplitter_Handles_Empty_String.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\String Split\Test_TStringSplitter_Handles_Empty_SubString.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\String Split\Test_TStringSplitter_Handles_Multiple_Empty_SubStrings.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Unit Tests\String Utils\String Split\Test_TStringSplitter_ReturnsRemainder.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Unit Tests\String Utils\String Split\Test_TStringSplitter_Splits_On_Tab.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Trim\Test_TrimEx_HandlesEmptySubject.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Unit Tests\String Utils\Trim\Test_TrimEx_HandlesTrimmingOnlyWhitespace.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Visualization Manager.TcVMO">
@@ -88,6 +118,9 @@ Updated to use tcl_SimpleUnitTestLibrary V1.0.2.0</Description>
     <Folder Include="Unit Tests\String Utils\Format String Tests" />
     <Folder Include="Unit Tests\String Utils" />
     <Folder Include="Unit Tests\String Utils\Date Time Formatting Tests" />
+    <Folder Include="Unit Tests\String Utils\LTrimEx" />
+    <Folder Include="Unit Tests\String Utils\Trim" />
+    <Folder Include="Unit Tests\String Utils\RTrimEx" />
     <Folder Include="Unit Tests\String Utils\String Split" />
     <Folder Include="VISUs" />
   </ItemGroup>
@@ -166,7 +199,7 @@ Updated to use tcl_SimpleUnitTestLibrary V1.0.2.0</Description>
   </ItemGroup>
   <ItemGroup>
     <PlaceholderResolution Include="tcl_SimpleUnitTestLibrary">
-      <Resolution>tcl_SimpleUnitTestLibrary, 1.1.0.0 (Red Rock Controls Limited)</Resolution>
+      <Resolution>tcl_SimpleUnitTestLibrary, 1.1.10.0 (Red Rock Controls Limited)</Resolution>
     </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>

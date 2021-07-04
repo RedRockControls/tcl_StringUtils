@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Test_TStringSplitter_Handles_Multiple_Empty_SubStrings" Id="{67874b9b-21aa-057f-30de-f98eef167d7c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_TStringSplitter_Handles_Multiple_Empty_SubStrings EXTENDS T_UnitTestBase
+VAR
+    StringSplitter : T_StringSplitter;
+    SubjectString  : T_MaxString := 'Badger,,,';
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[StringSplitter.Init(
+    Str    := SubjectString,
+    Delim1 := ',',
+    Delim2 := '');
+
+Assertion.AssertEquals_STRING(
+    Expected := 'Badger',
+    Actual   := StringSplitter.GetNext(),
+    VariableName  := 'StringSplitter.GetNext()');
+
+Assertion.AssertEquals_BOOL(
+    Expected := TRUE,
+    Actual   := StringSplitter.HasMore(),
+    VariableName  := 'StringSplitter.HasMore()');
+
+Assertion.AssertEquals_STRING(
+    Expected := '',
+    Actual   := StringSplitter.GetNext(),
+    VariableName  := 'StringSplitter.GetNext()');
+
+Assertion.AssertEquals_BOOL(
+    Expected := TRUE,
+    Actual   := StringSplitter.HasMore(),
+    VariableName  := 'StringSplitter.HasMore()');
+
+Assertion.AssertEquals_STRING(
+    Expected := '',
+    Actual   := StringSplitter.GetNext(),
+    VariableName  := 'StringSplitter.GetNext()');
+
+Assertion.AssertEquals_BOOL(
+    Expected := FALSE,
+    Actual   := StringSplitter.HasMore(),
+    VariableName  := 'StringSplitter.HasMore()');
+
+
+TestFinished();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

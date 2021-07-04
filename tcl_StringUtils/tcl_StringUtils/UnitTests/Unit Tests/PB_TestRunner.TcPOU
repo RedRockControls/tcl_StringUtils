@@ -1,12 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="PB_TestRunner" Id="{63470fcc-b57d-026d-334d-1963f895812d}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PB_TestRunner
 VAR
-    TestSuite : T_TestSuite;
-    Test_FormatStringWith4CharHexValue                     : Test_FormatStringWith4CharHexValue(TestSuite);
-    Test_FormatStringWith8CharHexValue                     : Test_FormatStringWith8CharHexValue(TestSuite);
-                                                            
+    TestRunner : T_TestRunner;
+
+    TestSuite                          : T_TestSuite;
+    Test_FormatStringWith4CharHexValue : Test_FormatStringWith4CharHexValue(TestSuite);
+    Test_FormatStringWith8CharHexValue : Test_FormatStringWith8CharHexValue(TestSuite);
+
+    Test_LTrimEx_HandlesEmptySubject      : Test_LTrimEx_HandlesEmptySubject(TestSuite);
+    Test_LTrimEx_HandlesTrimmingNoChars   : Test_LTrimEx_HandlesTrimmingNoChars(TestSuite);
+    Test_LTrimEx_HandlesTrimmingManyChars : Test_LTrimEx_HandlesTrimmingManyChars(TestSuite);
+
+    Test_RTrimEx_HandlesEmptySubject      : Test_RTrimEx_HandlesEmptySubject(TestSuite);
+    Test_RTrimEx_HandlesTrimmingNoChars   : Test_RTrimEx_HandlesTrimmingNoChars(TestSuite);
+    Test_RTrimEx_HandlesTrimmingManyChars : Test_RTrimEx_HandlesTrimmingManyChars(TestSuite);
+
+    Test_TrimEx_HandlesTrimmingOnlyWhitespace : Test_TrimEx_HandlesTrimmingOnlyWhitespace(TestSuite);
+
     Test_F_DateAsString_ReturnsDateString                  : Test_F_DateAsString_ReturnsDateString(TestSuite);
     Test_F_DateTimeAsString_ReturnsDateTimeString          : Test_F_DateTimeAsString_ReturnsDateTimeString(TestSuite);
     Test_F_DateTimeAsString_ms_ReturnsDateTimeString       : Test_F_DateTimeAsString_ms_ReturnsDateTimeString(TestSuite);
@@ -14,26 +26,28 @@ VAR
     Test_F_TimeAsString_ReturnsTimeStringWithLeadingZeros  : Test_F_TimeAsString_ReturnsTimeStringWithLeadingZeros(TestSuite);
     Test_F_TimeAsString_ms_ReturnsTimeString_ms            : Test_F_TimeAsString_ms_ReturnsTimeString_ms(TestSuite);
     Test_F_TimestampAsFilenameString_ReturnsFilenameString : Test_F_TimestampAsFilenameString_ReturnsFilenameString(TestSuite);
-                                                            
+
     Test_TStringSplitter_Handles_Empty_String              : Test_TStringSplitter_Handles_Empty_String(TestSuite);
     Test_TStringSplitter_ReturnsRemainder                  : Test_TStringSplitter_ReturnsRemainder(TestSuite);
     Test_TStringSplitter_Splits_On_Tab                     : Test_TStringSplitter_Splits_On_Tab(TestSuite);
-                                                            
-    Test_F_PadString_PadsShortStrings                      : Test_F_PadString_PadsShortStrings(TestSuite);
-    Test_F_PadString_TruncsLongString                      : Test_F_PadString_TruncsLongStrings(TestSuite);
+    Test_TStringSplitter_Handles_Empty_SubString           : Test_TStringSplitter_Handles_Empty_SubString(TestSuite);
+    Test_TStringSplitter_Handles_Multiple_Empty_SubStrings : Test_TStringSplitter_Handles_Multiple_Empty_SubStrings(TestSuite);
+
+    Test_F_PadString_PadsShortStrings : Test_F_PadString_PadsShortStrings(TestSuite);
+    Test_F_PadString_TruncsLongString : Test_F_PadString_TruncsLongStrings(TestSuite);
 
     init : BOOL := TRUE;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[IF Init THEN
-    tcl_SimpleUnitTestLibrary.TestFramework.TestRunner.AddTestSuite(TestSuite);
+      <ST><![CDATA[IF Init OR TestRunner.ReloadTests THEN
+	TestRunner.ReloadTests := FALSE;
+	TestRunner.ClearTests();
+    TestRunner.AddTestSuite(TestSuite);
     Init := FALSE;
 END_IF
 
-tcl_SimpleUnitTestLibrary.TestFramework.TestRunner(
-    RunTestsSequentially := TRUE, 
-    ManualTestRunsOnly := TRUE);
+TestRunner();
 
 
 ]]></ST>

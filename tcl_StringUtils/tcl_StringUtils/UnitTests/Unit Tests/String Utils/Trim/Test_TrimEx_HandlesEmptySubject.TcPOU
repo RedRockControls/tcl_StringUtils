@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Test_TrimEx_HandlesEmptySubject" Id="{d1276622-a662-0147-1776-f2ad3491e9d2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_TrimEx_HandlesEmptySubject EXTENDS T_UnitTestBase
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	SubjectString : T_MaxString := '';
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[Assertion.AssertEquals_STRING(
+	Expected := '',
+	Actual := F_Trim(str := SubjectString),
+	VariableName := 'F_Trim(str := SubjectString)');
+	
+TestFinished();]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
