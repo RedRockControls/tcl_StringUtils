@@ -18,9 +18,9 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_StringUtils</Title>
-    <ProjectVersion>1.1.1.0</ProjectVersion>
+    <ProjectVersion>1.1.2.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>F_ULINT_TO_TIMESTRUCT added</Description>
+    <Description>F_RTrimEx, F_LTrimEx  corrected to handle trimming n chars in string of length n</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory>
