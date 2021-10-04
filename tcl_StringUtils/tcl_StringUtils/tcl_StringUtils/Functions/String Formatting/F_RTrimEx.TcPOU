@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="F_RTrimEx" Id="{c2f1bd2b-d31d-43e4-836e-705c34495475}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION F_RTrimEx : T_MaxString // removes n characters from end of string
 VAR_INPUT
@@ -12,14 +12,17 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[Length := INT_TO_UINT(LEN(str));
-IF n > 0 AND n < Length THEN
+IF n = 0 THEN
+    F_RTrimEx := str;
+ELSIF n < Length THEN
     // overwrite chars to be trimmed with nulls...
     MEMSET(destAddr := ADR(str) + Length - n,
            fillByte:= 0,
            n := n); 
-    
+	F_RTrimEx := str;
+ELSE
+	F_RTrimEx := ''; // remove everything
 END_IF
-F_RTrimEx := str;
 ]]></ST>
     </Implementation>
   </POU>

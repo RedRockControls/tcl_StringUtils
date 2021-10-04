@@ -18,9 +18,9 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_StringUtils</Title>
-    <ProjectVersion>1.0.5.0</ProjectVersion>
+    <ProjectVersion>1.0.5.1</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>Library category corrected</Description>
+    <Description>F_RTrimEx, F_LTrimEx  corrected to handle trimming n chars in string of length n</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory>

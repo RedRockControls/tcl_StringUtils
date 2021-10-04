@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="F_LTrimEx" Id="{b231ba14-158f-4b86-a454-3236e2e0f35d}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION F_LTrimEx : T_MaxString // removes n characters from start of string
 VAR_INPUT
@@ -18,7 +18,10 @@ ELSIF n < Length THEN
     MEMCPY(destAddr := ADR(F_LTrimEx),
            srcAddr  := ADR(str) + n,
            n        := Length - n + 1); // include null terminator
-END_IF]]></ST>
+ELSE
+	F_LTrimEx := ''; // remove everything
+END_IF
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
