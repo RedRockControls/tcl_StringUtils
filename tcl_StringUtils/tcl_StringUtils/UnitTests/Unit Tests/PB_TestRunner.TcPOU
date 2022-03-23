@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
   <POU Name="PB_TestRunner" Id="{63470fcc-b57d-026d-334d-1963f895812d}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM PB_TestRunner
 VAR
     TestRunner : T_TestRunner;
 
-    TestSuite                          : T_TestSuite;
+    TestSuite              : T_TestSuite;
+    Test_StringToIpAddress : Test_StringToIpAddress(TestSuite);
+
     Test_FormatStringWith4CharHexValue : Test_FormatStringWith4CharHexValue(TestSuite);
     Test_FormatStringWith8CharHexValue : Test_FormatStringWith8CharHexValue(TestSuite);
 

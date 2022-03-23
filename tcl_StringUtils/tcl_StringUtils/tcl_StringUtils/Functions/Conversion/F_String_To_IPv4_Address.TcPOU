@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+  <POU Name="F_String_To_IPv4_Address" Id="{5b53c962-c033-0b5c-34d4-fc38234fc84f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_String_To_IPv4_Address : ARRAY[1..4] of BYTE
+VAR_INPUT
+    IpAddress : STRING; // like 192.168.1.125
+END_VAR
+VAR
+    StringSplitter : T_StringSplitter;
+    Byte1          : STRING;
+    Byte2          : STRING;
+    Byte3          : STRING;
+    Byte4          : STRING;
+    Result         : ARRAY[1..4] OF BYTE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[StringSplitter.Init(IpAddress,
+                    '.',
+                    '');
+
+Byte4 := StringSplitter.GetNext();
+Byte3 := StringSplitter.GetNext();
+Byte2 := StringSplitter.GetNext();
+Byte1 := StringSplitter.GetNext();
+
+Result[1] := STRING_TO_BYTE(Byte1);
+Result[2] := STRING_TO_BYTE(Byte2);
+Result[3] := STRING_TO_BYTE(Byte3);
+Result[4] := STRING_TO_BYTE(Byte4);
+
+F_String_To_IPv4_Address := Result;
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

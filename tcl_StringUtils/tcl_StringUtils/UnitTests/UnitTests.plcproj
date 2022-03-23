@@ -33,6 +33,9 @@ Updated to use tcl_SimpleUnitTestLibrary V1.0.2.0</Description>
     <Compile Include="Unit Tests\PB_TestRunner.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Unit Tests\String Utils\Conversion\Test_StringToIpAddress.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Unit Tests\String Utils\Date Time Formatting Tests\Test_F_DateAsString_ReturnsDateString.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -119,6 +122,7 @@ Updated to use tcl_SimpleUnitTestLibrary V1.0.2.0</Description>
     <Folder Include="Unit Tests\String Utils" />
     <Folder Include="Unit Tests\String Utils\Date Time Formatting Tests" />
     <Folder Include="Unit Tests\String Utils\LTrimEx" />
+    <Folder Include="Unit Tests\String Utils\Conversion" />
     <Folder Include="Unit Tests\String Utils\Trim" />
     <Folder Include="Unit Tests\String Utils\RTrimEx" />
     <Folder Include="Unit Tests\String Utils\String Split" />

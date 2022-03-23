@@ -18,9 +18,9 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_StringUtils</Title>
-    <ProjectVersion>1.1.2.0</ProjectVersion>
+    <ProjectVersion>1.1.3.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>F_RTrimEx, F_LTrimEx  corrected to handle trimming n chars in string of length n</Description>
+    <Description>F_String_To_IPv4_Address added</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory>
@@ -44,6 +44,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\T_StringSplitter.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Functions\Conversion\F_String_To_IPv4_Address.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Functions\Conversion\F_ULINT_TO_TIMESTRUCT.TcPOU">
