@@ -1,40 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.9">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Test_StringToIpAddress" Id="{5bc33b48-a377-05a1-2065-47bed9f2c7ae}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Test_StringToIpAddress EXTENDS T_UnitTestBase
-VAR_INPUT
-END_VAR
-VAR_OUTPUT
-END_VAR
 VAR
-	SubjectString : T_MaxString := '192.168.1.120';
-	Result : ARRAY[1..4] OF BYTE;
+    SubjectString : T_MaxString := '192.168.1.120';
+    Result        : ARRAY[1..4] OF BYTE;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Result := F_String_To_IPv4_Address(SubjectString);
-
-Assertion.AssertEquals_BYTE(
-	Expected := 120,
-	Actual := Result[1],
-	VariableName := 'F_String_To_IPv4_Address(SubjectString)');
-	
-Assertion.AssertEquals_BYTE(
-	Expected := 1,
-	Actual := Result[2],
-	VariableName := 'F_String_To_IPv4_Address(SubjectString)');
-	
-Assertion.AssertEquals_BYTE(
-	Expected := 168,
-	Actual := Result[3],
-	VariableName := 'F_String_To_IPv4_Address(SubjectString)');
-	
-Assertion.AssertEquals_BYTE(
-	Expected := 192,
-	Actual := Result[4],
-	VariableName := 'F_String_To_IPv4_Address(SubjectString)');
-	
-TestFinished();]]></ST>
+      <ST><![CDATA[
+]]></ST>
     </Implementation>
+    <Method Name="Init" Id="{596bf408-1288-01d5-313b-14cc64cdcb53}">
+      <Declaration><![CDATA[METHOD Init
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTest" Id="{e3c3ed0d-8f35-0f04-2a15-26e96a0df526}">
+      <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
+METHOD RunTest
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Result := F_String_To_IPv4_Address(SubjectString);
+
+AssertEquals_BYTE(Expected := 120,
+                  Actual   := Result[1],
+                  Message  := 'F_String_To_IPv4_Address(SubjectString)');
+
+AssertEquals_BYTE(Expected := 1,
+                  Actual   := Result[2],
+                  Message  := 'F_String_To_IPv4_Address(SubjectString)');
+
+AssertEquals_BYTE(Expected := 168,
+                  Actual   := Result[3],
+                  Message  := 'F_String_To_IPv4_Address(SubjectString)');
+
+AssertEquals_BYTE(Expected := 192,
+                  Actual   := Result[4],
+                  Message  := 'F_String_To_IPv4_Address(SubjectString)');
+
+TestCompleted := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

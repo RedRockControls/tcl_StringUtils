@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Test_FormatStringWith8CharHexValue" Id="{53f01785-3605-42c9-b65f-2e65fa8ed572}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Test_FormatStringWith8CharHexValue EXTENDS T_UnitTestBase
 VAR_INPUT
@@ -8,20 +8,38 @@ VAR_OUTPUT
 END_VAR
 VAR
     FormattedString : T_MaxString;
-    Value : UDINT;
+    Value           : UDINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Value := 16#12AB;
-FormattedString := F_FormatString1('Hex value = 0x%0.8X',F_UDINT(Value));
-
-Assertion.AssertEquals_STRING(
-    Expected     := 'Hex value = 0x000012AB', 
-    Actual       := FormattedString, 
-    VariableName := 'FormattedString');
-
-TestFinished();
-    ]]></ST>
+      <ST><![CDATA[
+]]></ST>
     </Implementation>
+    <Method Name="Init" Id="{5fccb54e-baec-0316-24c5-9f6e52c4aff8}">
+      <Declaration><![CDATA[METHOD Init
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTest" Id="{5f253db6-ef2a-0b9c-18e3-d08273204194}">
+      <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
+METHOD RunTest
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Value           := 16#12AB;
+FormattedString := F_FormatString1('Hex value = 0x%0.8X', F_UDINT(Value));
+
+AssertEquals_STRING(Expected := 'Hex value = 0x000012AB',
+                    Actual   := FormattedString,
+                    Message  := 'FormattedString');
+
+TestCompleted := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

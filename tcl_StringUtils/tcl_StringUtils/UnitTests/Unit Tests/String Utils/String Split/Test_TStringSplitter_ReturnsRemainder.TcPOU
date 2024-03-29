@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Test_TStringSplitter_ReturnsRemainder" Id="{8f4fe42a-2bd0-0874-1c8d-73d72a974ba0}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Test_TStringSplitter_ReturnsRemainder EXTENDS T_UnitTestBase
 VAR
@@ -8,39 +8,51 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-
-StringSplitter.Init(
-    Str    := 'Bob$TCharles$TDavid',
-    Delim1 := '$T',
-    Delim2 := '');
-
-Assertion.AssertEquals_BOOL(
-    Expected := TRUE,
-    Actual   := StringSplitter.HasMore(),
-    VariableName  := 'StringSplitter.HasMore()');
-    
-Assertion.AssertEquals_STRING(
-    Expected := 'Bob',
-    Actual   := StringSplitter.GetNext(),
-    VariableName  := 'StringSplitter.GetNext()');
-    
-Assertion.AssertEquals_STRING(
-    Expected := 'Charles$TDavid',
-    Actual   := StringSplitter.GetRemainder(),
-    VariableName  := 'StringSplitter.GetRemainder()');
-
-Assertion.AssertEquals_STRING(
-    Expected := '',
-    Actual   := StringSplitter.GetRemainder(),
-    VariableName  := 'StringSplitter.GetRemainder()');
-
-Assertion.AssertEquals_BOOL(
-    Expected := FALSE,
-    Actual   := StringSplitter.HasMore(),
-    VariableName  := 'StringSplitter.HasMore()');
-    
-
-TestFinished();]]></ST>
+]]></ST>
     </Implementation>
+    <Method Name="Init" Id="{f86f4c83-b2c7-090e-1e4c-b0c42f5d1d38}">
+      <Declaration><![CDATA[METHOD Init
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTest" Id="{d7cd6f02-0e90-0914-1849-dc83b7fa3ea2}">
+      <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
+METHOD RunTest
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+StringSplitter.Init(Str    := 'Bob$TCharles$TDavid',
+                    Delim1 := '$T',
+                    Delim2 := '');
+
+AssertEquals_BOOL(Expected := TRUE,
+                  Actual   := StringSplitter.HasMore(),
+                  Message  := 'StringSplitter.HasMore()');
+
+AssertEquals_STRING(Expected := 'Bob',
+                    Actual   := StringSplitter.GetNext(),
+                    Message  := 'StringSplitter.GetNext()');
+
+AssertEquals_STRING(Expected := 'Charles$TDavid',
+                    Actual   := StringSplitter.GetRemainder(),
+                    Message  := 'StringSplitter.GetRemainder()');
+
+AssertEquals_STRING(Expected := '',
+                    Actual   := StringSplitter.GetRemainder(),
+                    Message  := 'StringSplitter.GetRemainder()');
+
+AssertEquals_BOOL(Expected := FALSE,
+                  Actual   := StringSplitter.HasMore(),
+                  Message  := 'StringSplitter.HasMore()');
+
+TestCompleted := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

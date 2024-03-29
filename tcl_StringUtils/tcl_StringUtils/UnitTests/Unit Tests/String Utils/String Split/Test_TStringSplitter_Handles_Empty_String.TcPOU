@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Test_TStringSplitter_Handles_Empty_String" Id="{3a7cf2cc-79a9-0132-02fd-8eb652eaae4e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Test_TStringSplitter_Handles_Empty_String EXTENDS T_UnitTestBase
 VAR
@@ -8,24 +8,39 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-
-StringSplitter.Init(
-    Str    := '',
-    Delim1 := '$T',
-    Delim2 := '');
-
-Assertion.AssertEquals_STRING(
-    Expected := '',
-    Actual   := StringSplitter.GetNext(),
-    VariableName  := 'StringSplitter.GetNext()');
-
-Assertion.AssertEquals_BOOL(
-    Expected := FALSE,
-    Actual   := StringSplitter.HasMore(),
-    VariableName  := 'StringSplitter.HasMore()');
-
-
-TestFinished();]]></ST>
+]]></ST>
     </Implementation>
+    <Method Name="Init" Id="{706d927f-79c9-091f-0449-112fb3fe31ae}">
+      <Declaration><![CDATA[METHOD Init
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTest" Id="{55743589-28aa-09cd-2350-cef43f2129a9}">
+      <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
+METHOD RunTest
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+StringSplitter.Init(Str    := '',
+                    Delim1 := '$T',
+                    Delim2 := '');
+
+AssertEquals_STRING(Expected := '',
+                    Actual   := StringSplitter.GetNext(),
+                    Message  := 'StringSplitter.GetNext()');
+
+AssertEquals_BOOL(Expected := FALSE,
+                  Actual   := StringSplitter.HasMore(),
+                  Message  := 'StringSplitter.HasMore()');
+
+TestCompleted := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

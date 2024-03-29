@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Test_TStringSplitter_Splits_On_Tab" Id="{86e3e891-db36-057f-3764-d41869894fb8}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Test_TStringSplitter_Splits_On_Tab EXTENDS T_UnitTestBase
 VAR
@@ -8,29 +8,43 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-
-StringSplitter.Init(
-    Str    := 'Bob$TCharles$TDavid',
-    Delim1 := '$T',
-    Delim2 := '');
-
-Assertion.AssertEquals_STRING(
-    Expected := 'Bob',
-    Actual   := StringSplitter.GetNext(),
-    VariableName  := 'StringSplitter.GetNext()');
-
-Assertion.AssertEquals_STRING(
-    Expected := 'Charles',
-    Actual   := StringSplitter.GetNext(),
-    VariableName  := 'StringSplitter.GetNext()');
-
-Assertion.AssertEquals_STRING(
-    Expected := 'David',
-    Actual   := StringSplitter.GetNext(),
-    VariableName  := 'StringSplitter.GetNext()');
-
-
-TestFinished();]]></ST>
+]]></ST>
     </Implementation>
+    <Method Name="Init" Id="{490dfb9f-1b3e-099b-3ad2-ef0779468e82}">
+      <Declaration><![CDATA[METHOD Init
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTest" Id="{02fbd306-982e-0b16-2e18-81ef9210825c}">
+      <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
+METHOD RunTest
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+StringSplitter.Init(Str    := 'Bob$TCharles$TDavid',
+                    Delim1 := '$T',
+                    Delim2 := '');
+
+AssertEquals_STRING(Expected := 'Bob',
+                    Actual   := StringSplitter.GetNext(),
+                    Message  := 'StringSplitter.GetNext()');
+
+AssertEquals_STRING(Expected := 'Charles',
+                    Actual   := StringSplitter.GetNext(),
+                    Message  := 'StringSplitter.GetNext()');
+
+AssertEquals_STRING(Expected := 'David',
+                    Actual   := StringSplitter.GetNext(),
+                    Message  := 'StringSplitter.GetNext()');
+
+TestCompleted := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Test_LTrimEx_HandlesTrimmingManyChars" Id="{08eb4c07-0ad9-078b-191f-cb0e27e2cd67}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Test_LTrimEx_HandlesTrimmingManyChars EXTENDS T_UnitTestBase
 VAR_INPUT
@@ -7,16 +7,35 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	SubjectString : T_MaxString := 'Badger';
+    SubjectString : T_MaxString := 'Badger';
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Assertion.AssertEquals_STRING(
-	Expected := '',
-	Actual := F_LTrimEx(n := 20, str := SubjectString),
-	VariableName := 'F_LTrimEx(SubjectString)');
-	
-TestFinished();]]></ST>
+      <ST><![CDATA[
+]]></ST>
     </Implementation>
+    <Method Name="Init" Id="{cb22f8c9-e43f-026d-1b91-9b4dd08f9b50}">
+      <Declaration><![CDATA[METHOD Init
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTest" Id="{836a83cb-df96-004f-3211-73789ed47d7b}">
+      <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
+METHOD RunTest
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AssertEquals_STRING(Expected := '',
+                    Actual   := F_LTrimEx(n := 20, str := SubjectString),
+                    Message  := 'F_LTrimEx(SubjectString)');
+
+TestCompleted := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

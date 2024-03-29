@@ -1,31 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Test_F_PadString_TruncsLongStrings" Id="{277b310f-45dc-4306-844b-b4d7121604ac}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Test_F_PadString_TruncsLongStrings EXTENDS T_UnitTestBase
 VAR
     SubjectString : T_MaxString;
-    ResultString : T_MaxString;
+    ResultString  : T_MaxString;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[SubjectString := 'A long message with too many characters';
-ResultString := F_PadString(
-                    InputString := SubjectString,
-                    Length := 20);
-                    
-                    
-Assertion.AssertEquals_INT(
-    Expected:= 20, 
-    Actual:= LEN(ResultString), 
-    VariableName:= 'LEN(ResultString)');    
-
-Assertion.AssertEquals_STRING(
-    Expected:= 'A long message with ', 
-    Actual:= ResultString, 
-    VariableName:= 'ResultString');    
-
-
-TestFinished();              ]]></ST>
+      <ST><![CDATA[
+]]></ST>
     </Implementation>
+    <Method Name="Init" Id="{a44d22eb-9f4f-05dd-1d32-46f1ee5392d1}">
+      <Declaration><![CDATA[METHOD Init
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTest" Id="{a5072636-c388-0fa5-24dd-0ac984e14ca8}">
+      <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
+METHOD RunTest
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SubjectString := 'A long message with too many characters';
+ResultString  := F_PadString(InputString := SubjectString,
+                             Length      := 20);
+
+AssertEquals_INT(Expected := 20,
+                 Actual   := LEN(ResultString),
+                 Message  := 'LEN(ResultString)');
+
+AssertEquals_STRING(Expected := 'A long message with ',
+                    Actual   := ResultString,
+                    Message  := 'ResultString');
+
+TestCompleted := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

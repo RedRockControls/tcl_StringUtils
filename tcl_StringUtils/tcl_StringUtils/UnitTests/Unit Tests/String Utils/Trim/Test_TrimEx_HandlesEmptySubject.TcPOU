@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Test_TrimEx_HandlesEmptySubject" Id="{d1276622-a662-0147-1776-f2ad3491e9d2}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Test_TrimEx_HandlesEmptySubject EXTENDS T_UnitTestBase
 VAR_INPUT
@@ -7,16 +7,35 @@ END_VAR
 VAR_OUTPUT
 END_VAR
 VAR
-	SubjectString : T_MaxString := '';
+    SubjectString : T_MaxString := '';
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Assertion.AssertEquals_STRING(
-	Expected := '',
-	Actual := F_Trim(str := SubjectString),
-	VariableName := 'F_Trim(str := SubjectString)');
-	
-TestFinished();]]></ST>
+      <ST><![CDATA[
+]]></ST>
     </Implementation>
+    <Method Name="Init" Id="{f50a56f8-dd4e-0e6a-30a2-942459567b70}">
+      <Declaration><![CDATA[METHOD Init
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTest" Id="{6fc06f30-baa2-062e-397f-5eaff5cce7db}">
+      <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
+METHOD RunTest
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AssertEquals_STRING(Expected := '',
+                    Actual   := F_Trim(str := SubjectString),
+                    Message  := 'F_Trim(str := SubjectString)');
+
+TestCompleted := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

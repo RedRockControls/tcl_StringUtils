@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Test_F_TimeAsString_ReturnsLeadingZeros" Id="{72a01420-e5e9-02f9-2a71-637672ec7977}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_F_TimeAsString_ReturnsLeadingZeros EXTENDS T_UnitTestBase
+VAR
+    TimeStruct : TIMESTRUCT := (wHour := 6, wMinute := 5, wSecond := 4);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+]]></ST>
+    </Implementation>
+    <Method Name="Init" Id="{40260e9e-96b8-084c-39b3-010d9d525b1d}">
+      <Declaration><![CDATA[METHOD Init
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTest" Id="{6dcac63e-26da-04c2-3387-6790f1d49358}">
+      <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
+METHOD RunTest
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AssertEquals_STRING(Expected := '06:05:04',
+                    Actual   := F_TimeAsString(TimeStruct),
+                    Message  := 'F_TimeAsString(TimeStruct)');
+
+TestCompleted := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

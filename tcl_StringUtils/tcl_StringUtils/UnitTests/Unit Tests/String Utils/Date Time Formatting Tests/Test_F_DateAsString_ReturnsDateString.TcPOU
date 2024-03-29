@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Test_F_DateAsString_ReturnsDateString" Id="{dbb0c8d6-f694-0d2d-11c0-291b7b634d6f}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Test_F_DateAsString_ReturnsDateString EXTENDS T_UnitTestBase
 VAR
@@ -7,13 +7,31 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Assertion.AssertEquals_STRING(
-    Expected := '23/12/1945',
-    Actual   := F_DateAsString(TimeStruct),
-    VariableName  := 'F_DateAsString(TimeStruct)');
-
-
-TestFinished();]]></ST>
+      <ST><![CDATA[
+]]></ST>
     </Implementation>
+    <Method Name="Init" Id="{e0540770-7abc-084a-0155-997365c9ccc7}">
+      <Declaration><![CDATA[METHOD Init
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTest" Id="{93e67e09-1741-0a37-26cd-590ab245c7ff}">
+      <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
+METHOD RunTest
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AssertEquals_STRING(Expected := '23/12/1945',
+                    Actual   := F_DateAsString(TimeStruct),
+                    Message  := 'F_DateAsString(TimeStruct)');
+
+TestCompleted := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

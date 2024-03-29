@@ -1,31 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="Test_F_PadString_PadsShortStrings" Id="{027d78fd-7523-426a-a6c3-d6c4d9f6c3fb}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK Test_F_PadString_PadsShortStrings EXTENDS T_UnitTestBase
 VAR
     SubjectString : T_MaxString;
-    ResultString : T_MaxString;
+    ResultString  : T_MaxString;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[SubjectString := 'Bob';
-ResultString := F_PadString(
-                    InputString := SubjectString,
-                    Length := 20);
-                    
-                    
-Assertion.AssertEquals_INT(
-    Expected:= 20, 
-    Actual:= LEN(ResultString), 
-    VariableName:= 'LEN(ResultString)');    
-
-Assertion.AssertEquals_STRING(
-    Expected:= 'Bob                 ', 
-    Actual:= ResultString, 
-    VariableName:= 'ResultString');    
-
-
-TestFinished();              ]]></ST>
+      <ST><![CDATA[
+]]></ST>
     </Implementation>
+    <Method Name="Init" Id="{f16d4901-b7b1-013f-3fbe-e72525aa5810}">
+      <Declaration><![CDATA[METHOD Init
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RunTest" Id="{f9993575-954a-060f-16d4-b4076f995ccf}">
+      <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
+METHOD RunTest
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SubjectString := 'Bob';
+ResultString  := F_PadString(InputString := SubjectString,
+                             Length      := 20);
+
+AssertEquals_INT(Expected := 20,
+                 Actual   := LEN(ResultString),
+                 Message  := 'LEN(ResultString)');
+
+AssertEquals_STRING(Expected := 'Bob                 ',
+                    Actual   := ResultString,
+                    Message  := 'ResultString');
+
+TestCompleted := TRUE;
+]]></ST>
+      </Implementation>
+    </Method>
   </POU>
 </TcPlcObject>

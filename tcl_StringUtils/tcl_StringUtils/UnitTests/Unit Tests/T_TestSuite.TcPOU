@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="T_TestSuite" Id="{ed36e071-030c-06b0-182e-924def1f2a1d}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'call_after_init'}
+FUNCTION_BLOCK T_TestSuite
+VAR
+    TestRunner : T_TestRunner();
+
+    Test_StringToIpAddress                                 : Test_StringToIpAddress;
+    Test_FormatStringWith4CharHexValue                     : Test_FormatStringWith4CharHexValue;
+    Test_FormatStringWith8CharHexValue                     : Test_FormatStringWith8CharHexValue;
+    Test_LTrimEx_HandlesEmptySubject                       : Test_LTrimEx_HandlesEmptySubject;
+    Test_LTrimEx_HandlesTrimmingNoChars                    : Test_LTrimEx_HandlesTrimmingNoChars;
+    Test_LTrimEx_HandlesTrimmingManyChars                  : Test_LTrimEx_HandlesTrimmingManyChars;
+    Test_RTrimEx_HandlesEmptySubject                       : Test_RTrimEx_HandlesEmptySubject;
+    Test_RTrimEx_HandlesTrimmingNoChars                    : Test_RTrimEx_HandlesTrimmingNoChars;
+    Test_RTrimEx_HandlesTrimmingManyChars                  : Test_RTrimEx_HandlesTrimmingManyChars;
+    Test_TrimEx_HandlesTrimmingOnlyWhitespace              : Test_TrimEx_HandlesTrimmingOnlyWhitespace;
+    Test_TrimEx_HandlesEmptySubject                        : Test_TrimEx_HandlesEmptySubject;
+    Test_F_DateAsString_ReturnsDateString                  : Test_F_DateAsString_ReturnsDateString;
+    Test_F_DateTimeAsString_ReturnsDateTimeString          : Test_F_DateTimeAsString;
+    Test_F_DateTimeAsString_ms_ReturnsDTStr                : Test_F_DateTimeAsString_ms;
+    Test_F_TimeAsString_Returns24HourFormat                : Test_F_TimeAsString_Returns24HourFormat;
+    Test_F_TimeAsString_ReturnsLeadingZeros                : Test_F_TimeAsString_ReturnsLeadingZeros;
+    Test_F_TimeAsString_ms_ReturnsTimeString_ms            : Test_F_TimeAsString_ms_ReturnsString_ms;
+    Test_F_TimestampAsFilenameString_ReturnsFilenameString : Test_F_TimestampAsFilename_ReturnsValue;
+    Test_TStringSplitter_Handles_Empty_String              : Test_TStringSplitter_Handles_Empty_String;
+    Test_TStringSplitter_ReturnsRemainder                  : Test_TStringSplitter_ReturnsRemainder;
+    Test_TStringSplitter_Splits_On_Tab                     : Test_TStringSplitter_Splits_On_Tab;
+    Test_TStringSplitter_Handles_Empty_SubString           : Test_TStringSplitter_Handles_Empty_SubString;
+    Test_TStringSplitter_Handles_Multiple_Empty_SubStrings : Test_TStringSplitter_Handles_Multiple_Empty;
+    Test_F_PadString_PadsShortStrings                      : Test_F_PadString_PadsShortStrings;
+    Test_F_PadString_TruncsLongString                      : Test_F_PadString_TruncsLongStrings;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[TestRunner.CyclicUpdate();
+]]></ST>
+    </Implementation>
+    <Method Name="Init" Id="{6efaf855-be04-058a-3d7a-a0b722dc311f}">
+      <Declaration><![CDATA[{attribute 'call_after_online_change_slot' := '100'}
+{attribute 'call_after_init'}
+METHOD Init
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[TestRunner.TestSuiteName := 'tcl_StrinUtils Tests';
+TestRunner.Verbose       := FALSE;
+
+TestRunner.ClearTests();
+
+TestRunner.AddTest(THIS^.Test_StringToIpAddress);
+TestRunner.AddTest(THIS^.Test_FormatStringWith4CharHexValue);
+TestRunner.AddTest(THIS^.Test_FormatStringWith8CharHexValue);
+TestRunner.AddTest(THIS^.Test_StringToIpAddress);
+TestRunner.AddTest(THIS^.Test_FormatStringWith4CharHexValue);
+TestRunner.AddTest(THIS^.Test_FormatStringWith8CharHexValue);
+TestRunner.AddTest(THIS^.Test_LTrimEx_HandlesEmptySubject);
+TestRunner.AddTest(THIS^.Test_LTrimEx_HandlesTrimmingNoChars);
+TestRunner.AddTest(THIS^.Test_LTrimEx_HandlesTrimmingManyChars);
+TestRunner.AddTest(THIS^.Test_RTrimEx_HandlesEmptySubject);
+TestRunner.AddTest(THIS^.Test_RTrimEx_HandlesTrimmingNoChars);
+TestRunner.AddTest(THIS^.Test_RTrimEx_HandlesTrimmingManyChars);
+TestRunner.AddTest(THIS^.Test_TrimEx_HandlesTrimmingOnlyWhitespace);
+TestRunner.AddTest(THIS^.Test_TrimEx_HandlesEmptySubject);
+TestRunner.AddTest(THIS^.Test_F_DateAsString_ReturnsDateString);
+TestRunner.AddTest(THIS^.Test_F_DateTimeAsString_ReturnsDateTimeString);
+TestRunner.AddTest(THIS^.Test_F_DateTimeAsString_ms_ReturnsDTStr);
+TestRunner.AddTest(THIS^.Test_F_TimeAsString_Returns24HourFormat);
+TestRunner.AddTest(THIS^.Test_F_TimeAsString_ReturnsLeadingZeros);
+TestRunner.AddTest(THIS^.Test_F_TimeAsString_ms_ReturnsTimeString_ms);
+TestRunner.AddTest(THIS^.Test_F_TimestampAsFilenameString_ReturnsFilenameString);
+TestRunner.AddTest(THIS^.Test_TStringSplitter_Handles_Empty_String);
+TestRunner.AddTest(THIS^.Test_TStringSplitter_ReturnsRemainder);
+TestRunner.AddTest(THIS^.Test_TStringSplitter_Splits_On_Tab);
+TestRunner.AddTest(THIS^.Test_TStringSplitter_Handles_Empty_SubString);
+
+TestRunner.Start();
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
