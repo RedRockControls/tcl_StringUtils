@@ -10,22 +10,20 @@ END_VAR
       <ST><![CDATA[
 ]]></ST>
     </Implementation>
-    <Method Name="Init" Id="{40260e9e-96b8-084c-39b3-010d9d525b1d}">
-      <Declaration><![CDATA[METHOD Init
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[
-]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="RunTest" Id="{6dcac63e-26da-04c2-3387-6790f1d49358}">
       <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
 METHOD RunTest
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[AssertEquals_STRING(Expected := '06:05:04',
+        <ST><![CDATA[IF Retest THEN
+	SUPER^.Init();
+END_IF
+
+IF TestCompleted THEN
+	RETURN;
+END_IF
+
+AssertEquals_STRING(Expected := '06:05:04',
                     Actual   := F_TimeAsString(TimeStruct),
                     Message  := 'F_TimeAsString(TimeStruct)');
 

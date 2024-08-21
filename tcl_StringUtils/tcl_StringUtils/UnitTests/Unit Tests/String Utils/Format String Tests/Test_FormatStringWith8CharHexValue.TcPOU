@@ -15,22 +15,20 @@ END_VAR
       <ST><![CDATA[
 ]]></ST>
     </Implementation>
-    <Method Name="Init" Id="{5fccb54e-baec-0316-24c5-9f6e52c4aff8}">
-      <Declaration><![CDATA[METHOD Init
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[
-]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="RunTest" Id="{5f253db6-ef2a-0b9c-18e3-d08273204194}">
       <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
 METHOD RunTest
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Value           := 16#12AB;
+        <ST><![CDATA[IF Retest THEN
+	SUPER^.Init();
+END_IF
+
+IF TestCompleted THEN
+	RETURN;
+END_IF
+
+Value           := 16#12AB;
 FormattedString := F_FormatString1('Hex value = 0x%0.8X', F_UDINT(Value));
 
 AssertEquals_STRING(Expected := 'Hex value = 0x000012AB',

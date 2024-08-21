@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="Test_F_TimestampAsFilename_ReturnsValue" Id="{be314818-0935-0ff5-2754-1e6cba9ef99d}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK Test_F_TimestampAsFilename_ReturnsValue EXTENDS T_UnitTestBase
+  <POU Name="Test_F_TimestampAsFilename_ms" Id="{b75e8dd8-3514-0d30-044d-10acbcbef153}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Test_F_TimestampAsFilename_ms EXTENDS T_UnitTestBase
 VAR
     TimeStruct : TIMESTRUCT := (wDay          := 23,
                                 wMonth        := 12,
@@ -16,7 +16,7 @@ END_VAR
       <ST><![CDATA[
 ]]></ST>
     </Implementation>
-    <Method Name="RunTest" Id="{48b1c12a-085f-06fe-07ec-a81542c4dfde}">
+    <Method Name="RunTest" Id="{61fac8bb-faab-05a6-2f96-240b169bd0f4}">
       <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
 METHOD RunTest
 ]]></Declaration>
@@ -29,9 +29,9 @@ IF TestCompleted THEN
 	RETURN;
 END_IF
 
-AssertEquals_STRING(Expected := '1945-12-23 22-20-18',
-                    Actual   := F_TimestampAsFilenameString(TimeStruct),
-                    Message  := 'F_TimeAsString_ms(TimeStruct)');
+AssertEquals_STRING(Expected := '1945-12-23 22:20:18.512',
+                    Actual   := F_TimestampAsFilenameString_ms(TimeStruct),
+                    Message  := 'F_TimestampAsFilenameString_ms(TimeStruct)');
 
 TestCompleted := TRUE;
 ]]></ST>

@@ -11,22 +11,20 @@ END_VAR
       <ST><![CDATA[
 ]]></ST>
     </Implementation>
-    <Method Name="Init" Id="{6f2e54f7-228b-022f-1e04-f7bf57e8be53}">
-      <Declaration><![CDATA[METHOD Init
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[
-]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="RunTest" Id="{22d44373-85be-060a-375b-6299242a53f7}">
       <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
 METHOD RunTest
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[StringSplitter.Init(Str    := SubjectString,
+        <ST><![CDATA[IF Retest THEN
+	SUPER^.Init();
+END_IF
+
+IF TestCompleted THEN
+	RETURN;
+END_IF
+
+StringSplitter.Init(Str    := SubjectString,
                     Delim1 := ',',
                     Delim2 := '');
 

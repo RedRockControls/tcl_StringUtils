@@ -14,22 +14,20 @@ END_VAR
       <ST><![CDATA[
 ]]></ST>
     </Implementation>
-    <Method Name="Init" Id="{e2fe6984-5714-022a-3221-0d72cdddfa61}">
-      <Declaration><![CDATA[METHOD Init
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[
-]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="RunTest" Id="{82b8e8e5-9310-0ef8-10aa-b4e0db82c289}">
       <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
 METHOD RunTest
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[AssertEquals_STRING(Expected := 'Badger',
+        <ST><![CDATA[IF Retest THEN
+	SUPER^.Init();
+END_IF
+
+IF TestCompleted THEN
+	RETURN;
+END_IF
+
+AssertEquals_STRING(Expected := 'Badger',
                     Actual   := F_LTrimEx(n := 0, str := SubjectString),
                     Message  := 'F_LTrimEx(SubjectString)');
 

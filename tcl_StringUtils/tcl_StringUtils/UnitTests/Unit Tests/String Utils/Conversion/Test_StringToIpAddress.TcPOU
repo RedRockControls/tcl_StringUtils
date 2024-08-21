@@ -11,22 +11,20 @@ END_VAR
       <ST><![CDATA[
 ]]></ST>
     </Implementation>
-    <Method Name="Init" Id="{596bf408-1288-01d5-313b-14cc64cdcb53}">
-      <Declaration><![CDATA[METHOD Init
-VAR_INPUT
-END_VAR
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[
-]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="RunTest" Id="{e3c3ed0d-8f35-0f04-2a15-26e96a0df526}">
       <Declaration><![CDATA[{attribute 'analysis' := '-33'} // inhibit unused variable warning
 METHOD RunTest
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[Result := F_String_To_IPv4_Address(SubjectString);
+        <ST><![CDATA[IF Retest THEN
+	SUPER^.Init();
+END_IF
+
+IF TestCompleted THEN
+	RETURN;
+END_IF
+
+Result := F_String_To_IPv4_Address(SubjectString);
 
 AssertEquals_BYTE(Expected := 120,
                   Actual   := Result[1],

@@ -4,8 +4,6 @@
     <Declaration><![CDATA[{attribute 'call_after_init'}
 FUNCTION_BLOCK T_TestSuite
 VAR
-    TestRunner : T_TestRunner();
-
     Test_StringToIpAddress                                 : Test_StringToIpAddress;
     Test_FormatStringWith4CharHexValue                     : Test_FormatStringWith4CharHexValue;
     Test_FormatStringWith8CharHexValue                     : Test_FormatStringWith8CharHexValue;
@@ -31,52 +29,37 @@ VAR
     Test_TStringSplitter_Handles_Multiple_Empty_SubStrings : Test_TStringSplitter_Handles_Multiple_Empty;
     Test_F_PadString_PadsShortStrings                      : Test_F_PadString_PadsShortStrings;
     Test_F_PadString_TruncsLongString                      : Test_F_PadString_TruncsLongStrings;
+    Test_F_TimestampAsFilename_ms                          : Test_F_TimestampAsFilename_ms;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[TestRunner.CyclicUpdate();
+      <ST><![CDATA[Test_StringToIpAddress.RunTest();
+Test_FormatStringWith4CharHexValue.RunTest();
+Test_FormatStringWith8CharHexValue.RunTest();
+Test_LTrimEx_HandlesEmptySubject.RunTest();
+Test_LTrimEx_HandlesTrimmingNoChars.RunTest();
+Test_LTrimEx_HandlesTrimmingManyChars.RunTest();
+Test_RTrimEx_HandlesEmptySubject.RunTest();
+Test_RTrimEx_HandlesTrimmingNoChars.RunTest();
+Test_RTrimEx_HandlesTrimmingManyChars.RunTest();
+Test_TrimEx_HandlesTrimmingOnlyWhitespace.RunTest();
+Test_TrimEx_HandlesEmptySubject.RunTest();
+Test_F_DateAsString_ReturnsDateString.RunTest();
+Test_F_DateTimeAsString_ReturnsDateTimeString.RunTest();
+Test_F_DateTimeAsString_ms_ReturnsDTStr.RunTest();
+Test_F_TimeAsString_Returns24HourFormat.RunTest();
+Test_F_TimeAsString_ReturnsLeadingZeros.RunTest();
+Test_F_TimeAsString_ms_ReturnsTimeString_ms.RunTest();
+Test_F_TimestampAsFilenameString_ReturnsFilenameString.RunTest();
+Test_TStringSplitter_Handles_Empty_String.RunTest();
+Test_TStringSplitter_ReturnsRemainder.RunTest();
+Test_TStringSplitter_Splits_On_Tab.RunTest();
+Test_TStringSplitter_Handles_Empty_SubString.RunTest();
+Test_TStringSplitter_Handles_Multiple_Empty_SubStrings.RunTest();
+Test_F_PadString_PadsShortStrings.RunTest();
+Test_F_PadString_TruncsLongString.RunTest();
+Test_F_TimestampAsFilename_ms.RunTest();
 ]]></ST>
     </Implementation>
-    <Method Name="Init" Id="{6efaf855-be04-058a-3d7a-a0b722dc311f}">
-      <Declaration><![CDATA[{attribute 'call_after_online_change_slot' := '100'}
-{attribute 'call_after_init'}
-METHOD Init
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[TestRunner.TestSuiteName := 'tcl_StrinUtils Tests';
-TestRunner.Verbose       := FALSE;
-
-TestRunner.ClearTests();
-
-TestRunner.AddTest(THIS^.Test_StringToIpAddress);
-TestRunner.AddTest(THIS^.Test_FormatStringWith4CharHexValue);
-TestRunner.AddTest(THIS^.Test_FormatStringWith8CharHexValue);
-TestRunner.AddTest(THIS^.Test_StringToIpAddress);
-TestRunner.AddTest(THIS^.Test_FormatStringWith4CharHexValue);
-TestRunner.AddTest(THIS^.Test_FormatStringWith8CharHexValue);
-TestRunner.AddTest(THIS^.Test_LTrimEx_HandlesEmptySubject);
-TestRunner.AddTest(THIS^.Test_LTrimEx_HandlesTrimmingNoChars);
-TestRunner.AddTest(THIS^.Test_LTrimEx_HandlesTrimmingManyChars);
-TestRunner.AddTest(THIS^.Test_RTrimEx_HandlesEmptySubject);
-TestRunner.AddTest(THIS^.Test_RTrimEx_HandlesTrimmingNoChars);
-TestRunner.AddTest(THIS^.Test_RTrimEx_HandlesTrimmingManyChars);
-TestRunner.AddTest(THIS^.Test_TrimEx_HandlesTrimmingOnlyWhitespace);
-TestRunner.AddTest(THIS^.Test_TrimEx_HandlesEmptySubject);
-TestRunner.AddTest(THIS^.Test_F_DateAsString_ReturnsDateString);
-TestRunner.AddTest(THIS^.Test_F_DateTimeAsString_ReturnsDateTimeString);
-TestRunner.AddTest(THIS^.Test_F_DateTimeAsString_ms_ReturnsDTStr);
-TestRunner.AddTest(THIS^.Test_F_TimeAsString_Returns24HourFormat);
-TestRunner.AddTest(THIS^.Test_F_TimeAsString_ReturnsLeadingZeros);
-TestRunner.AddTest(THIS^.Test_F_TimeAsString_ms_ReturnsTimeString_ms);
-TestRunner.AddTest(THIS^.Test_F_TimestampAsFilenameString_ReturnsFilenameString);
-TestRunner.AddTest(THIS^.Test_TStringSplitter_Handles_Empty_String);
-TestRunner.AddTest(THIS^.Test_TStringSplitter_ReturnsRemainder);
-TestRunner.AddTest(THIS^.Test_TStringSplitter_Splits_On_Tab);
-TestRunner.AddTest(THIS^.Test_TStringSplitter_Handles_Empty_SubString);
-
-TestRunner.Start();
-]]></ST>
-      </Implementation>
-    </Method>
   </POU>
 </TcPlcObject>
