@@ -18,9 +18,9 @@
     <Company>Red Rock Controls Limited</Company>
     <Released>false</Released>
     <Title>tcl_StringUtils</Title>
-    <ProjectVersion>1.1.5.0</ProjectVersion>
+    <ProjectVersion>1.1.6.0</ProjectVersion>
     <Author>Roger Christopher</Author>
-    <Description>F_TimestampAsFilenameString_ms added</Description>
+    <Description>F_StringLength added</Description>
     <CombineIds>true</CombineIds>
     <LibraryCategories>
       <LibraryCategory>
@@ -148,6 +148,9 @@
     <Compile Include="Functions\String Formatting\F_Trim.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Functions\Utils\F_StringLength.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Version\Global_Version.TcGVL">
       <SubType>Code</SubType>
     </Compile>
@@ -157,6 +160,7 @@
     <Folder Include="Functions" />
     <Folder Include="Functions\Date Time Formatting" />
     <Folder Include="Functions\Conversion" />
+    <Folder Include="Functions\Utils" />
     <Folder Include="Functions\String Formatting" />
     <Folder Include="Version" />
   </ItemGroup>

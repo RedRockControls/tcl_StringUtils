@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.15">
+  <POU Name="F_StringLength" Id="{89a0ba35-a760-468f-89a1-46b54b1d6306}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_StringLength : UDINT
+VAR_IN_OUT CONSTANT
+	str : STRING;
+END_VAR
+VAR
+	pByte : POINTER TO BYTE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[pByte := ADR(str);
+
+WHILE pByte^ <> 0 DO
+	pByte := pByte + 1;
+	F_StringLength := F_StringLength + 1;
+END_WHILE]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
